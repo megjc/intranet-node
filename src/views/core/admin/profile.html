@@ -1,0 +1,56 @@
+<div class="container">
+<div ng-include="'views/nav/nav-bar.html'"></div>
+<div style="margin-top:36px">
+  <div class="columns">
+    <div class="column is-2">
+      <div ng-include="'views/core/admin/sidebar-inner.html'"></div>
+    </div>
+    <div class="column">
+        <div ng-class="{'notification is-primary': vm.message.success}"
+             ng-show="vm.notification.show">
+          {{vm.notification.text}}
+        </div>
+      <h1 class="title is-4">{{vm.user}}</h1>
+      <p class="subtitle is-5" style="color: #7A7A7A;margin-bottom:12px">{{vm.department}}</p>
+     <hr style="margin-top:12px"/>
+      <p class="subtitle is-5" ng-show="vm.apps.length == 0">
+        <strong>{{vm.user}}</strong> has access to <strong>{{vm.apps.length}}</strong> apps.
+      </p>
+
+        <ul style="list-style:none;padding-left:0">
+          <li ng-repeat="app in vm.apps" style="height:60px">
+            <div class="app-circle">{{app.title | charAt}}</div>
+            <a style="text-decoration:none">
+              <strong class="capitalize">{{app.title}}</strong> -
+              <span style="font-size:14px;color: #7A7A7A">access granted on
+                <strong style="color: #7A7A7A">
+                  {{app.created_on | date: 'EEEE, LLLL d yyyy @ h:mm:ss a'}}
+                </strong>
+              </span>
+            </a>
+            <hr style="margin-top:12px;margin-bottom:12px"/>
+          </li>
+        </ul>
+
+        <button class="button is-info" ng-click="vm.toggle()">Grant Access</button>
+        <div class="box" style="margin-top:24px" ng-show="vm.show">
+          <h1 class="title is-5">List of Applications</h1>
+          <hr />
+          <ul style="list-style:none;padding-left:0;">
+            <li ng-repeat="(title, enabled) in vm.access" style="height:36px">
+              <div class="field">
+                <p class="control">
+                  <label class="checkbox">
+                    <input type="checkbox" ng-model="vm.access[title]">
+                    <span class="capitalize">{{title}}</span>
+                  </label>
+                </p>
+            </div>
+            </li>
+          </ul>
+          <button class="button is-success" ng-click="vm.save()">Save</button>
+        </div>
+    </div>
+  </div>
+</div>
+</div>

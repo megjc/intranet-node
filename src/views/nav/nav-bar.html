@@ -1,0 +1,38 @@
+<nav class="nav has-shadow" ng-controller="Nav as vm">
+  <div class="nav-left">
+    <a href="#!/dashboard/apps" class="nav-item nav-text">
+      <img src="assets/imgs/coa.png" alt="coat of arms">
+      <span style="margin-left:5px;font-size:18px;">
+        MEGJC Corporate Intranet
+      </span>
+    </a>
+  </div>
+
+  <div class="nav-center">
+
+</div>
+  <span class="nav-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </span>
+  <div class="nav-right nav-menu">
+    <div class="nav-item">
+      <div class="field is-grouped">
+        <div class="field">
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a class="nav-item nav-text">Logged in as {{vm.username}}</a>
+      <div class="field is-grouped">
+        <p class="control">
+          <button class="button is-light" ng-click="vm.logout()">
+            Sign out
+          </button>
+        </p>
+      </div>
+    </div>
+  </div>
+</nav>

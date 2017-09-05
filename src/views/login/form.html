@@ -1,0 +1,86 @@
+<div ng-include="'views/nav/nav-bar-signin.html'"></div>
+<section class="container">
+  <div ng-show="vm.notification.show"
+       ng-class="{'notification is-primary': vm.notification.success,
+                'notification is-danger': !vm.notification.success}">
+    {{vm.notification.text}}
+  </div>
+
+<div class="login-wrapper">
+  <div class="columns">
+
+    <div class="column">
+      <div class="login-panel">
+        <p class="title is-3">Ministry of Economic Growth <br />and Job Creation</p>
+        <div class="login-panel-text">
+          <p class="subtitle is-5">Our newly redeveloped portal provides users with an array of digital services
+            enabling users to provide quality customer service to internal and external customers.
+          </p>
+          <p class="subtitle is-5">
+            To learn more about the Ministry's digital services, send an email to the
+            <strong>Digital Services Team</strong> of the Information, Communication and Technology (ICT) Branch <a href>ict@megjc.gov.jm</a>
+          </p>
+        </div>
+    </div>
+    </div>
+
+    <div class="column">
+      <div class="login-panel">
+      <div class="box">
+        <h3 class="title is-4">Sign In</h3>
+        <hr />
+        <form name="loginForm" novalidate ng-submit="vm.auth()">
+          <div class="field">
+            <label class="label">Username</label>
+          <p class="control has-icons-left has-icons-right">
+            <input ng-class="{'input is-danger': loginForm.name.$touched &&
+                         loginForm.name.$invalid, 'input': loginForm.name.$touched || loginForm.name.$untouched}"
+                    class="input"
+                    type="text"
+                    required
+                    name="name"
+                    ng-model="vm.credentials.name">
+            <span class="icon is-small is-left">
+              <i class="fa fa-user"></i>
+            </span>
+          </p>
+          <div ng-messages="loginForm.name.$error" ng-if="loginForm.name.$touched">
+            <p class="help is-danger" ng-message="required">Your username is required.</p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Password</label>
+        <p class="control has-icons-left has-icons-right">
+
+          <input ng-class="{'input is-danger': loginForm.password.$touched &&
+                       loginForm.password.$invalid, 'input': loginForm.password.$touched || loginForm.password.$untouched}"
+                  class="input"
+                  type="password"
+                  name="password"
+                  ng-model="vm.credentials.password"
+                  required>
+          <span class="icon is-small is-left">
+            <i class="fa fa-lock"></i>
+          </span>
+        </p>
+        <div ng-messages="loginForm.password.$error" ng-if="loginForm.password.$touched">
+          <p class="help is-danger" ng-message="required">Your password is required.</p>
+        </div>
+        </div>
+
+        <div class="field is-grouped">
+          <p class="control">
+            <button class="button is-success is-pulled-right"
+                    type="submit"
+                    ng-disabled="loginForm.$invalid">
+              Log in
+          </p>
+        </div>
+        </form>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>

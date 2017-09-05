@@ -1,0 +1,20 @@
+<div class="container">
+<div ng-include="'views/nav/nav-bar.html'"></div>
+
+<div class="field is-grouped" style="margin-top:36px">
+  <p class="control is-expanded">
+    <input class="input" type="text" placeholder="Find a repository">
+  </p>
+  <p class="control">
+    <a class="button is-info">
+      Search
+    </a>
+  </p>
+</div>
+
+<p ng-show="vm.results.length > 0">
+  <strong>RESULTS ({{vm.results.length}}) </strong>
+</p>
+
+
+</div>

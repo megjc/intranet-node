@@ -1,0 +1,18 @@
+{
+  "name": "intranet-v3",
+  "version": "0.0.1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "bulma": "0.5.1",
+    "angular": "^1.6.4",
+    "angular-route": "^1.6.4",
+    "font-awesome": "fontawesome#^4.7.0",
+    "angular-messages": "^1.6.4",
+    "angular-mocks": "^1.6.4",
+    "ng-idle": "^1.3.2"
+  }
+}

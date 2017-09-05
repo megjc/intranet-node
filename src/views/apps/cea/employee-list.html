@@ -1,0 +1,37 @@
+<div class="container">
+<div ng-include="'views/nav/nav-bar.html'"></div>
+
+<div class="level" style="margin-top:24px;">
+  <div class="level-left"></div>
+  <div class="level-right">
+    <a href="#!/dashboard/apps/tod/new/officer"
+       class="button is-info action-btn" ng-if="vm.canCreate">add employee</a>
+  </div>
+</div>
+
+<table class="table is-fullwidth">
+  <thead>
+    <tr style="text-transform:uppercase; font-size:14px;">
+      <th>name</th>
+      <th>post</th>
+      <th>contract period</th>
+      <th>division</th>
+      <th>affiliation</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="font-size:15px;cursor:pointer" ng-repeat="employee in vm.employees">
+      <td style="text-transform: capitalize" title="{{employee.last_name}}, {{employee.first_name}}">{{employee.last_name}}, {{employee.first_name}}</td>
+      <td style="text-transform: capitalize" title="{{employee.post}}">{{employee.post}}</td>
+      <td>{{employee.start_date | date: 'MMM. dd, yyyy'}} - {{employee.end_date | date: 'MMM. dd, yyyy'}}</td>
+      <td style="text-transform: capitalize" title="{{employee.division}}">{{employee.division}}</td>
+      <td style="max-width:152px;overflow:hidden;text-overflow: ellipsis;white-space: nowrap;" title="{{employee.affiliation}}">{{employee.affiliation}}</td>
+      <!-- <td style="max-width:240px;overflow:hidden;text-overflow: ellipsis;white-space: nowrap;" title="{{employee.affiliation}}">View Remarks</td> -->
+      <td><a href ng-if="vm.canUpdate">View Remarks</a></td>
+      <td><a href ng-if="vm.canUpdate">Edit</a></td>
+    </tr>
+  </tbody>
+</table>
+</div>

@@ -1,0 +1,64 @@
+<div class="container">
+<div ng-include="'views/nav/nav-bar.html'"></div>
+
+<div class="level" style="margin-top:24px;">
+  <div class="level-left"></div>
+  <div class="level-right">
+    <a href="#!/dashboard/apps/tod/officers/new"
+       class="button is-primary" ng-if="vm.canCreate">Add officer</a>
+  </div>
+</div>
+<div class="columns">
+  <div class="column is-2" ng-include="'views/apps/tod/side-menu.html'"></div>
+  <div class="column is-10">
+
+  <div class="field">
+    <div class="control">
+      <input class="input" type="text" placeholder="Filter officers by name" ng-model="search">
+    </div>
+  </div>
+
+    <table class="table is-fullwidth" style="padding-bottom: 30px;">
+        <thead style="font-weight:bold">
+          <tr style="text-transform:uppercase;font-size:14px;">
+            <th>name</th>
+            <th>department/activity</th>
+            <!-- <th>post</th> -->
+            <th>allowance</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="officer in vm.officers | filter:search" style="font-size:15px">
+            <td style="text-transform: capitalize">{{officer.name}}</td>
+              <td><strong>{{officer.act_title}}</strong></td>
+            <!-- <td style="text-transform: capitalize">{{officer.position}}</td> -->
+            <td>{{officer.title}} - <strong>{{officer.amount | currency: '$'}}</strong></td> <!-- allowance title -->
+            <td>
+              <div class="dropdown">
+                <a href class="src" ng-click="vm.showDocs(officer.id)" style="color: #1F78D1">View Documents</a>
+                <div id="{{officer.id}}" class="dropdown-content">
+                  <p style="padding:3px 20px;font-size:16px;">
+                  <span class="capitalize"><strong>{{officer.name}}</strong> - {{officer.position}}</span>
+                  </p>
+                     <ul style="padding:3px 20px;font-size:15px;">
+                       <li ng-repeat="doc in vm.documents" style="margin-bottom:5px">
+                         <span class="icon" style="color:#1F78D1"><i class="fa fa-calendar fa-lg" aria-hidden="true"></i></span>
+                         <span class="capitalize">{{doc.title}}</span> expires on
+                         <strong> {{doc.expiry_date | date: 'EEE, MMM d, yyyy'}}</strong>
+                       </li>
+                     </ul>
+                </div>
+              </div>
+            </td>
+            <td>
+              <a ng-href="#!/dashboard/apps/tod/officers/{{officer.id}}/edit" style="color: #1F78D1">Edit</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+
+</div> <!-- end of columns -->
+</div> <!-- end of container -->

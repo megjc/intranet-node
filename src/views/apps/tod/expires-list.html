@@ -1,0 +1,140 @@
+<div class="container">
+<div ng-include="'views/nav/nav-bar.html'"></div>
+
+<div class="level" style="margin-top:24px;">
+  <div class="level-left"></div>
+  <div class="level-right">
+    <a href="#!/dashboard/apps/tod/officers/new"
+       class="button is-primary" ng-if="vm.canCreate">Add Officer</a>
+  </div>
+</div>
+<div class="columns">
+  <div class="column is-2" ng-include="'views/apps/tod/side-menu.html'"></div>
+  <div class="column is-10">
+
+    <div class="field">
+      <div class="control">
+        <input class="input" type="text" placeholder="Filter officers by name" ng-model="search">
+      </div>
+    </div>
+
+    <table class="table is-fullwidth" style="padding-bottom: 30px;">
+        <thead>
+          <tr style="text-transform:uppercase; font-weight:bold;font-size:14px;">
+            <th>name</th>
+            <th>document title</th>
+            <th>expiry date</th>
+            <th>email</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="officer in vm.officers | filter:search" style="font-size:15px">
+            <td style="text-transform: capitalize">{{officer.name}}</td>
+            <td style="text-transform: capitalize">{{officer.title}} </td>
+            <td>{{officer.expiry_date | date: 'EEEE, MMMM d, yyyy'}}</td>
+              <td><a ng-href="{{officer.email}}" style="color: #1F78D1">{{officer.email}}</a></td>
+            <td><a ng-href="#!/dashboard/apps/tod/officers/{{officer.employee_id}}/edit" style="color: #1F78D1">Edit</a></td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+
+</div> <!-- end of columns -->
+
+<div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <div class="box">
+<h1 class="title is-5">Edit Expiry Date</h1>
+<hr />
+
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <label class="label">Officer Name</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <input class="input" disabled type="text" value="Tremaine Buchanan">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <label class="label">Title</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <input class="input" disabled type="text" value="Driver's License">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <label class="label">Expiry Date</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <input class="input" disabled type="text" value="Friday, September 13, 2013">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <label class="label">New Date</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <input class="input" type="date" value="Driver's License">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <label class="label">Question</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <textarea class="textarea" placeholder="Explain how we can help you"></textarea>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="field is-horizontal">
+  <div class="field-label">
+    <!-- Left empty for spacing -->
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <button class="button is-light">
+          Cancel
+        </button>
+
+        <button class="button is-primary">
+          Update
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>
+
+</div> <!-- end of container -->

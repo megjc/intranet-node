@@ -1,0 +1,212 @@
+a {
+  color: #363636;
+}
+
+a:hover{
+  text-decoration: underline;
+}
+
+.table thead td, .table thead th {
+  color: #000000;
+  font-weight: normal;
+}
+/**
+ * Officer Listing Page
+ */
+
+.search-area{
+  width: 300px;
+  float: left;
+  margin-bottom: 12px;
+}
+
+.dropdown{
+  float: left;
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #FFFFFF;
+    min-width: 500px;
+    min-height: 100px;
+    padding: 12px 0 12px 0;
+    margin-top: 12px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    right: 0;
+    z-index: 1;
+}
+
+.show{
+  display: block;
+}
+
+/**
+ * Login Page
+ */
+.login-wrapper{
+  width:960px;
+  margin:100px auto;
+}
+
+.login-panel-text{
+  margin-top: 12px;
+}
+
+.login-panel > .box{
+  width: 370px;
+}
+/**
+ * Tabs
+ * @type {[type]}
+ */
+
+ .tabs li.is-active a, .tabs li.is-active a:hover {
+     border-bottom: 2px solid #1F78D1;
+     text-decoration: none;
+     color: #363636;
+     font-size: 16px;
+     font-weight: bold;
+}
+
+.tabs li a {
+    text-decoration: none;
+    color: #7A7A7A;
+    font-size: 16px;
+}
+
+.tabs li a:hover {
+    border-bottom: 2px solid #C4C4C4;
+    text-decoration: none;
+}
+/**
+ * App List
+ */
+.app-circle {
+ 	border-radius: 50%;
+  min-width: 40px;
+  min-height: 40px;
+  background-color: #EEEEEE;
+  width: 40px;
+  height: 40px;
+  float: left;
+  margin-right: 5px;
+  margin-top: -6px;
+  margin-bottom: 0px;
+  border: 1px solid #FFFFFF;
+  text-align: center;
+  display: inline-block;
+  padding: 6px 3px;
+ 	/* width and height can be anything, as long as they're equal */
+ }
+
+.capitalize{
+  text-transform: capitalize;
+}
+
+.results{
+  height:auto;
+  background-color:#f5f5f5;
+  margin-bottom:12px;
+  margin-top: 5px;
+  border: 1px solid #DBDBDB;
+}
+
+.results p{
+  cursor: pointer;
+  padding: 8px 12px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.results p:hover{
+  background-color: #fafafa;
+}
+
+.autocomplete{
+  margin-bottom: 12px;
+}
+
+.app-link{
+  color: #363636;
+  font-size: 18px;
+}
+
+.app-link:hover{
+  background-color: #276CDA;
+  color: #FFFFFF;
+  padding: 5px 12px;
+}
+
+/**
+ * NavBar
+ */
+
+a.nav-text, a.nav-text:hover{
+  text-decoration: none;
+  color:#000000;
+}
+
+/**
+ * Logo
+ */
+.logo-wrapper{
+  width: 100px;
+  height: 100px;
+  margin: 24px auto;
+  padding: 6px 12px 6px 12px;
+}
+
+.logo-wrapper img{
+  height: 80px;
+  width: 80px;
+  padding: 0;
+  margin: 0;
+}
+
+/**
+ * Buttons
+ */
+
+.button.action-btn{
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/**
+ * Form
+ */
+.section-header{
+  margin-top: 24px;
+}
+
+.section-header h1{
+  margin-bottom: 0;
+}
+
+.section-header hr{
+  margin-top: 0;
+}
+.officer-form{
+  /*width: 600px;
+  height: 1000px;*/
+  margin: 24px auto;
+}
+
+
+.form-ctrl{
+  width: 50%;
+}
+
+.form-ctrl-long{
+  width: 77%
+}
+
+.form-ctrl-date{
+  width: 30%;
+}
+.notification-area{
+  margin: 12px 0 12px 0;
+}

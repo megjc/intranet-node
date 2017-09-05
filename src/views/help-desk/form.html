@@ -1,0 +1,104 @@
+<section class="hero is-info is-bold has-text-centered">
+  <div class="hero-body">
+    <div class="container">
+        <h2 class="title">
+        My Help Desk
+      </h2>
+    </div>
+  </div>
+</section>
+
+<div class="container" style="padding-bottom:40px">
+
+<div style="width:500px;margin:30px auto">
+
+  <div ng-show="vm.message.show"
+       ng-class="{'notification is-primary': vm.message.success, 'notification is-danger': vm.message.error}">
+    {{vm.message.text}}
+  </div>
+
+<form name="ticketSubForm" novalidate ng-submit="vm.submit()">
+  <div class="field">
+    <label class="label">My email is</label>
+    <p class="control has-icons-left">
+      <input ng-class="{'input is-danger': ticketSubForm.email.$touched &&
+                   ticketSubForm.email.$invalid, 'input': ticketSubForm.email.$touched || ticketSubForm.email.$untouched}"
+                   class="input"
+                   type="text"
+                   name="email"
+                   placeholder="e.g. john.brown@megjc.gov.jm"
+                   ng-model="vm.ticket.email"
+                   ng-minlength="3"
+                   required>
+      <span class="icon is-small is-left">
+        <i class="fa fa-envelope"></i>
+      </span>
+    </p>
+    <div ng-messages="ticketSubForm.email.$error" ng-if="ticketSubForm.email.$touched">
+      <p class="help is-danger" ng-message="required">Your email address is required.</p>
+      <p class="help is-danger" ng-message="min-length">Your email address is too short.</p>
+    </div>
+  </div>
+
+  <strong><span style="margin-top:24px">I'm currently experiencing a/an:-</span></strong>
+
+  <div class="field" ng-repeat="ticket_type in vm.ticket_types.slice(0,6)">
+    <p class="control" style="margin-bottom:10px;margin-top:10px">
+      <label class="radio">
+        <input type="radio"
+               class="is-medium"
+               ng-model="vm.type"
+               required
+               name="{{ticket_type.id}}"
+               ng-value="{{ticket_type.id}}"
+               ng-click="vm.select(ticket_type)">
+              {{ticket_type.title}}
+      </label>
+    </p>
+  </div>
+
+  <hr />
+
+  <strong>I would like ICT to assist with :-</strong>
+
+  <div class="field" ng-repeat="ticket_type in vm.requests">
+    <p class="control" style="margin-bottom:10px;margin-top:10px">
+      <label class="radio">
+        <input type="radio"
+               class="is-medium"
+               ng-model="vm.type"
+               required
+               name="{{ticket_type.id}}"
+               ng-value="{{ticket_type.id}}"
+               ng-click="vm.select(ticket_type)">
+              {{ticket_type.title}}
+      </label>
+    </p>
+  </div>
+
+  <hr />
+  <div class="field">
+    <label class="label">If possible, kindly provide any additional details about your issue/request.</label>
+    <p class="control">
+      <textarea class="textarea"
+                placeholder="e.g. My computer is not connecting to the internet"
+                ng-model="vm.ticket.description">
+      </textarea>
+    </p>
+  </div>
+
+
+    <div class="field is-grouped">
+
+      <p class="control">
+        <button class="button is-light" ng-click="vm.cancel()">Cancel</button>
+      </p>
+
+      <p class="control">
+        <button class="button is-info" type="submit" ng-disabled="ticketSubForm.$invalid">Submit</button>
+      </p>
+
+    </div>
+  </form>
+  </div>
+</div>

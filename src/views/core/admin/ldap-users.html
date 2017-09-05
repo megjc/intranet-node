@@ -1,0 +1,39 @@
+<div class="container">
+<div ng-include="'views/nav/nav-bar.html'"></div>
+<div style="margin-top:36px">
+  <div class="columns">
+    <div class="column is-2">
+      <div ng-include="'views/core/admin/sidebar-inner.html'"></div>
+    </div>
+    <div class="column">
+      <div class="field">
+        <p class="control has-icons-left">
+        <input class="input" ng-model="search" placeholder="Filter list by name" />
+        <span class="icon is-small is-left">
+            <i class="fa fa-filter"></i>
+          </span>
+      </p>
+      </div>
+
+      <table class="table is-narrow">
+        <thead>
+          <tr style="text-transform:uppercase; font-size:14px;">
+            <th>#</th>
+            <th>name</th>
+            <th>dn</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in vm.users | filter: search" style="font-size:15px;cursor: pointer" ng-click="vm.view(user.dn)">
+              <td>
+                {{$index + 1}}
+              </td>
+              <td style="text-transform: capitalize">{{user.cn}}</td>
+              <td style="text-transform: capitalize">{{user.dn}}</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
