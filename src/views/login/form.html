@@ -1,14 +1,15 @@
 <div ng-include="'views/nav/nav-bar-signin.html'"></div>
 <section class="container">
-  <div ng-show="vm.notification.show"
-       ng-class="{'notification is-primary': vm.notification.success,
-                'notification is-danger': !vm.notification.success}">
-    {{vm.notification.text}}
+  <div style="width:600px;margin: 0 auto">
+    <div ng-show="vm.notification.show"
+         ng-class="{'notification is-primary': vm.notification.success,
+                  'notification is-danger': !vm.notification.success}">
+      {{vm.notification.text}}
+    </div>
   </div>
 
 <div class="login-wrapper">
   <div class="columns">
-
     <div class="column">
       <div class="login-panel">
         <p class="title is-3">Ministry of Economic Growth <br />and Job Creation</p>
@@ -27,7 +28,7 @@
     <div class="column">
       <div class="login-panel">
       <div class="box">
-        <h3 class="title is-4">Sign In</h3>
+        <h3 class="subtitle is-4">Sign In</h3>
         <hr />
         <form name="loginForm" novalidate ng-submit="vm.auth()">
           <div class="field">

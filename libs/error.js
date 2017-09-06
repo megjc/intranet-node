@@ -11,7 +11,7 @@ const ERR = {
         success: false
   },
   UNAUTHORIZED: {
-    message: 'You are not authorized.',
+    message: 'Your session has expired. Please enter your username and password',
     developer_msg: 'Unable to validate/verify user credentials',
     success: false
   },

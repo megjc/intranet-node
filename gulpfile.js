@@ -87,7 +87,7 @@
   gulp.task('default', ['watch'])
 
   gulp.task('watch', function () {
-    gulp.watch([files.js], ['inject-dev'])
+    gulp.watch([files.js], ['production'])
   });
 
 })();

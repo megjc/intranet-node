@@ -4,7 +4,7 @@
  * @since 2017-06-19
  */
 'use strict'
-const tokenLib = require('../../libs/token'),
+const libToken = require('../../libs/token'),
       error = require('../../libs/error').error
 
 let token = {
@@ -15,13 +15,10 @@ let token = {
    * @return {[type]}     [description]
    */
   verify: (req, res)=>{
-    let jwt = tokenLib.extractHeader( req, 'Authorization' )
-
-    if(jwt == false) return res.status(403).json(error.UNAUTHORIZED)
-
-    tokenLib.verify( jwt, (err, data)=>{
-      if( err != null ) return res.status(403).json(error.UNAUTHORIZED)
-
+    let jwt = libToken.extractHeader( req, 'Authorization' )
+    if(jwt == false) return res.status(400).json(error.TOKEN.BAD_REQUEST)
+    libToken.verify( jwt, ( err, data )=>{
+      if( err != null ) return res.status(401).json(error.UNAUTHORIZED)
       return res.json(true)
     })
   }

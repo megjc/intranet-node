@@ -11,7 +11,8 @@
     function notify($rootScope) {
         var service = {
           subscribe:subscribe,
-          emitEvent:emitEvent
+          emitEvent:emitEvent,
+          builder:builder
         }
         return service
         /**
@@ -30,6 +31,19 @@
          */
         function emitEvent(eventName){
           $rootScope.$emit(eventName)
+        }
+        /**
+         * Builds a notification message
+         * @param  {[type]} message [description]
+         * @param  {[type]} success [description]
+         * @param  {[type]} show    [description]
+         */
+        function builder( message, success, show ){
+          return {
+            'text': message,
+            'success': success,
+            'show': show
+          }
         }
     }
 })();

@@ -11,10 +11,11 @@ const express = require("express"),
     cookieParser = require('cookie-parser'),
     helmet = require('helmet'),
     app = express(),
-    admin = require('./admin'),
+
     /**
      * Endpoints
      */
+    admin = require('./admin'),
     apps = require('./controllers/apps/routes'),
     tickets = require('./controllers/tickets/routes'),
     users = require('./controllers/users/routes'),
@@ -27,7 +28,6 @@ const express = require("express"),
     documents = require('./controllers/documents/routes'),
     vehicles = require('./controllers/vehicles/routes'),
     /********* End of Endpoints ***************/
-    /******************************************/
     srcDir = __dirname + "/src/",
     api_version = '/api'
 
