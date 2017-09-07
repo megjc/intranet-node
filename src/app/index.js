@@ -46,7 +46,9 @@ angular.module('intranet', [
   function restrictAccess( $rootScope, $location, login){
     $rootScope.$on("$routeChangeStart", function(event, next, current) {
         if(next.access != null && next.access.restricted){
-              login.validateToken().then(function(res){})
+              login.validateToken().then(function(res){
+                if(res.status == 401) login.handleUnAuthorized()
+            })
         }
     });
   }

@@ -21,6 +21,11 @@
             return employeeSrv.list()
           }
         }
+      }).when('/dashboard/apps/cea/new/employee', {
+        controller: 'CreateEmployee as vm',
+        title: 'New Employee',
+        templateUrl: 'views/apps/cea/create-employee.html',
+        access: { restricted: true}
       })
     }
 })();

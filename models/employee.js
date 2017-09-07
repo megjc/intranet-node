@@ -30,7 +30,7 @@ exports.create = (employee, cb)=>{
 exports.show = (options, cb)=>{
   model.query(options, (err, employee)=>{
     if(err) return cb(err)
-    cb(null, employee)
+    cb(null, employee[0])
   })
 }
 

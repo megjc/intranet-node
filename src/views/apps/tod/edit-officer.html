@@ -1,7 +1,8 @@
 <div class="container">
 <div ng-include="'views/nav/nav-bar.html'"></div>
+<div style="height:36px;margin-top:24px;margin-bottom:24px"></div>
 <div class="columns">
-  <div class="column is-2"></div>
+  <div class="column is-2" ng-include="'views/apps/tod/side-menu.html'"></div>
   <div class="column is-8">
     <div class="notification-area">
       <div ng-class="{'notification is-primary': vm.message.success}"
@@ -9,24 +10,10 @@
         {{vm.notification.text}}
       </div>
     </div>
-
+    <h1 class="subtitle is-4" style="margin-top:-15px">
+      Edit Traveling Officer
+    </h1>
     <form novalidate name="officerForm" class="officer-form">
-      <div class="level" style="margin-top:24px;">
-        <div class="level-left">
-            <h1 class="subtitle is-4">
-              Edit Traveling Officer
-            </h1>
-        </div>
-        <div class="level-right">
-          <div class="field is-grouped">
-            <p class="control">
-              <a class="button is-light" href ng-click="vm.back()">
-                Back
-              </a>
-            </p>
-          </div>
-        </div>
-      </div>
       <div class="box">
         <div class="level">
           <div class="level-left">

@@ -33,11 +33,12 @@
         }
 
         function responseError( rejection ){
-          if(rejection.status === 401){
-            var path = encodeURI($location.path())
-            sessionStorage.removeItem('uid')
-            $location.url('/users/login?session_expired=true&redirectTo=' + path)
-          }
+          // if(rejection.status === 401){
+          //   var path = encodeURI($location.path())
+          //   console.log(path)
+          //   sessionStorage.removeItem('uid')
+          //   $location.url('/users/login?session_expired=true&redirectTo=' + path)
+          // }
 
           return $q.reject(rejection)
         }

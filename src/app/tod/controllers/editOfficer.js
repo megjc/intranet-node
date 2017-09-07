@@ -16,7 +16,6 @@
         vm.updateVehicle = updateVehicle
         vm.getSelectedActivity = getSelectedActivity
         vm.getSelectedAllowance = getSelectedAllowance
-        vm.back = back
 
         function activate() {
           todSrv.getOfficerById($routeParams.id).then(function(officer){
@@ -87,9 +86,5 @@
             'show': true
           }
         })
-
-        function back(){
-          $window.history.back()
-        }
     }
 })();

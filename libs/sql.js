@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 'use strict'
 let statements = {
@@ -7,6 +7,8 @@ let statements = {
     GET: "SELECT employees.id, employees.name, employees.position, employees.classification_id, allowances.title, activities.title AS `act_title`, allowances.amount FROM employees"
           + " INNER JOIN allowances ON employees.allowance_type = allowances.id"
           + " INNER JOIN activities ON employees.activity_id = activities.id WHERE employees.is_traveling = 'T' ORDER BY activities.title ASC",
+    GETTYPE: "SELECT employees.id, employees.name, employees.position, employees.classification_id, activities.title, employees.start_date, employees.end_date FROM employees"
+          + " INNER JOIN activities ON employees.activity_id = activities.id WHERE ?? = ? ORDER BY activities.title ASC",
     SHOW: 'SELECT employees.id, employees.name, employees.email, employees.position, employees.classification_id, '
           + 'employees.activity_id, employees.allowance_type, vehicles.id as `vehicle_id`, vehicles.make, vehicles.model, vehicles.year AS `vehicle_year`, vehicles.plate, vehicles.comments, vehicles.is_owner FROM ?? '
           + ' LEFT JOIN vehicles ON employees.id = vehicles.emp_id WHERE employees.id = ?',

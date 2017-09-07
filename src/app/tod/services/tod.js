@@ -149,7 +149,6 @@
         }
 
         function updateDoc( doc ){
-          console.log(doc)
           return $http.put('/api/documents/' + doc.id, doc).then(function(res){
             return res.data
           })

@@ -24,7 +24,7 @@ exports.validate = (req, res, next)=>{
   if(typeof authHeader != 'undefined'){
     let jwt = authHeader.split(' ')
     libToken.verify(jwt[1], (err, decoded)=>{
-      if(err != null) return res.status(400).json(error.TOKEN.BAD_REQUEST)
+      if(err != null) return res.status(401).json(error.UNAUTHORIZED)
       res.locals.decoded = decoded
       next()
     })

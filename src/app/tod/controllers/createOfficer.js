@@ -70,11 +70,7 @@
         }
 
         notify.subscribe($scope, 'notification', function(){
-          vm.notification = {
-            'success' : vm.message.success,
-            'text': vm.message.text,
-            'show': true
-          }
+          vm.notification = notify.builder(vm.message.message, vm.message.success, true)
         })
     }
 })();

@@ -5,6 +5,7 @@ const vehicle = require('../../models/vehicle')
 const filter = require('../../libs/filter')
 const moment = require('moment')
 const SQL = require('../../libs/sql').statements
+const logic = require('../../middlewares/logic/employee').Employee
 
 let employees = {
   /**
@@ -14,22 +15,26 @@ let employees = {
    * @return {[type]}    a list of travelling officers
    */
   index: (req, res)=>{
-    employee.index(res.locals.options, (err, employees)=>{
+    let options = logic.buildQuery(req.query)
+    employee.index(options, (err, employees)=>{
       if(err) return res.json(err)
       return res.json(employees)
     })
   },
+  /**
+   * Retrieves an employee record by id
+   * @param  {[type]} req [description]
+   * @param  {[type]} res [description]
+   * @return {Object} employee - An employee object
+   */
   show: (req, res)=>{
-    let options = {
-      values: ['employees', req.params.id],
-      sql: SQL.SHOW
-    }
+    let options = logic.buildIdQuery( req.params.id )
     employee.show(options, (err, employee)=>{
       if(err) return res.json(err)
       document.index(req.params.id, (err, docs)=>{
-        if(err) employee[0].docs = []
-        employee[0].docs = docs
-        res.json(employee[0])
+        if(err) employee.docs = []
+        employee.docs = docs
+        res.json(employee)
       })
     })
   },

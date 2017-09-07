@@ -22,9 +22,16 @@
         validateToken: validateToken,
         deleteToken: deleteToken,
         getUname:getUname,
-        isAdmin: isAdmin
+        isAdmin: isAdmin,
+        handleUnAuthorized: handleUnAuthorized
       }
       return service
+
+      function handleUnAuthorized(){
+        var path = encodeURI($location.path())
+        sessionStorage.removeItem('uid')
+        $location.url('/users/login?session_expired=true&redirectTo=' + path)
+      }
       /**
        * [authUser description]
        * @param  {[type]} credentials [description]
