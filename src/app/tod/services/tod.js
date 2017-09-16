@@ -17,7 +17,10 @@
             update: update,
             updateDoc: updateDoc,
             getExpiredDocs:getExpiredDocs,
-            updateVehicle: updateVehicle
+            updateVehicle: updateVehicle,
+            removeOfficer: removeOfficer,
+            checkSection: checkSection,
+            compareString: compareString
         }
 
         return service
@@ -95,7 +98,8 @@
             "position": data.position,
             "classification_id": data.classification_id,
             "activity_id": data.activity_id,
-            "allowance_type": data.allowance_type
+            "allowance_type": data.allowance_type,
+            "is_traveling" : data.is_traveling
           }
         }
 
@@ -135,6 +139,9 @@
           var data = {}, url = '/api/employees/' + officer.id
           if(section == 'employee'){
             data = createEmployeeUpdate( officer )
+          }else if(section == 'remove-officer') {
+            officer.is_traveling = 'F'
+            data = createEmployeeUpdate(officer)
           }
           return $http.put(url, data).then(function(res){
             return res.data
@@ -158,6 +165,25 @@
           return $http.get('/api/expired').then(function(res){
             return res.data
           })
+        }
+
+        function removeOfficer( id ){
+          return $http.put('/api/employees/' + id, {'is_traveling': 'F'}).then(function(res){
+            return res.data
+          })
+        }
+        /**
+         * [checkSection description]
+         * @param  {[type]} section [description]
+         * @return {[type]}         [description]
+         */
+        function checkSection( section ){
+          var sections = ['remove-officer']
+          return (sections.indexOf(section) > -1) ? true : false
+        }
+
+        function compareString( arg, arg1 ){
+          return arg.toLowerCase() == arg1.toLowerCase()
         }
 
     }

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container is-fluid">
 <div ng-include="'views/nav/nav-bar.html'"></div>
 
 <div class="level" style="margin-top:24px;">
@@ -22,8 +22,8 @@
         <thead style="font-weight:bold">
           <tr style="text-transform:uppercase;font-size:14px;">
             <th>name</th>
+            <th>classification</th>
             <th>department/activity</th>
-            <!-- <th>post</th> -->
             <th>allowance</th>
             <th></th>
             <th></th>
@@ -32,12 +32,12 @@
         <tbody>
           <tr ng-repeat="officer in vm.officers | filter:search" style="font-size:15px">
             <td style="text-transform: capitalize">{{officer.name}}</td>
-              <td><strong>{{officer.act_title}}</strong></td>
-            <!-- <td style="text-transform: capitalize">{{officer.position}}</td> -->
+            <td>{{officer.class_title}}</td>
+            <td><strong>{{officer.act_title}}</strong></td>
             <td>{{officer.title}} - <strong>{{officer.amount | currency: '$'}}</strong></td> <!-- allowance title -->
             <td>
               <div class="dropdown">
-                <a href class="src" ng-click="vm.showDocs(officer.id)" style="color: #1F78D1">Documents</a>
+                <a href class="src" ng-click="vm.showDocs(officer.id)" style="color: #1F78D1">Docs</a>
                 <div id="{{officer.id}}" class="dropdown-content">
                   <p style="padding:3px 20px;font-size:16px;">
                   <span class="capitalize"><strong>{{officer.name}}</strong> - {{officer.position}}</span>
@@ -53,7 +53,7 @@
               </div>
             </td>
             <td>
-              <a ng-href="#!/dashboard/apps/tod/officers/{{officer.id}}/edit" style="color: #1F78D1">Edit</a>
+              <a ng-href="#!/dashboard/apps/tod/officers/{{officer.id}}/edit" style="color: #1F78D1" ng-if="vm.canUpdate">Edit</a>
             </td>
           </tr>
         </tbody>

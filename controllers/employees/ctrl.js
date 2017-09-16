@@ -103,7 +103,14 @@ let employees = {
   update: (req, res)=>{
     let options = {
      sql: SQL.UPDATE,
-     values: [req.body.name, req.body.email, req.body.position, req.body.classification_id, req.body.activity_id, req.body.allowance_type, req.body.id]
+     values: [req.body.name,
+              req.body.email,
+              req.body.position,
+              req.body.classification_id,
+              req.body.activity_id,
+              req.body.allowance_type,
+              req.body.is_traveling,
+              req.body.id]
     }
     employee.update(options, (err, result)=>{
       if(err) return res.status(400).json({'text': 'Error in updating record', 'err': err, 'success': false})

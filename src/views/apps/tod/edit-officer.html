@@ -1,16 +1,18 @@
-<div class="container">
+<div class="container is-fluid">
 <div ng-include="'views/nav/nav-bar.html'"></div>
-<div style="height:36px;margin-top:24px;margin-bottom:24px"></div>
+<div style="height:24px;margin-top:12px;margin-bottom:6px"></div>
+<div class="notification-area">
+  <div ng-class="{'notification is-primary': vm.message.success}"
+       ng-show="vm.notification.show">
+    {{vm.notification.text}}
+  </div>
+</div>
 <div class="columns">
   <div class="column is-2" ng-include="'views/apps/tod/side-menu.html'"></div>
-  <div class="column is-8">
-    <div class="notification-area">
-      <div ng-class="{'notification is-primary': vm.message.success}"
-           ng-show="vm.notification.show">
-        {{vm.notification.text}}
-      </div>
-    </div>
-    <h1 class="subtitle is-4" style="margin-top:-15px">
+  <div class="column is-7">
+
+
+    <h1 class="subtitle is-4" style="margin-top:-15px;">
       Edit Traveling Officer
     </h1>
     <form novalidate name="officerForm" class="officer-form">
@@ -23,6 +25,7 @@
             <div class="field is-grouped">
               <p class="control">
                 <a class="button is-primary"
+                    ng-disabled="vm.disabled"
                    ng-click="vm.update('employee')">
                   Update
                 </a>
@@ -42,6 +45,7 @@
                 <input class="input form-ctrl"
                        type="text"
                        ng-model="vm.officer.name"
+                       ng-disabled="vm.disabled"
                        placeholder="e.g. Juliet Wright-Brown">
                 <span class="icon is-small is-left">
                   <i class="fa fa-user"></i>
@@ -58,9 +62,10 @@
           <div class="field-body">
             <div class="field">
               <div class="control has-icons-left">
-                <input class="input form-ctrl"
+                <input class="input"
                        type="text"
                        placeholder="e.g.juliet.wright-brown@megjc.gov.jm"
+                       ng-disabled="vm.disabled"
                        ng-model="vm.officer.email">
                 <span class="icon is-small is-left">
                     <i class="fa fa-envelope"></i>
@@ -79,7 +84,8 @@
               <div class="control">
                 <div class="select is-fullwidth">
                   <select ng-model="vm.selectedClassification"
-                          ng-change="vm.getSelected()"
+                          ng-change="vm.getSelectedClassification()"
+                          ng-disabled="vm.disabled"
                           ng-options="classification.title for classification in vm.classifications">
                     <option value="">Select Classification</option>
                   </select>
@@ -97,8 +103,9 @@
           <div class="field-body">
             <div class="field">
               <div class="control">
-                <input class="input form-ctrl"
+                <input class="input"
                        type="text" ng-model="vm.officer.position"
+                       ng-disabled="vm.disabled"
                        placeholder="e.g. Director">
               </div>
             </div>
@@ -115,6 +122,7 @@
                 <div class="select is-fullwidth">
                   <select ng-model="vm.selectedActivity"
                           ng-change="vm.getSelectedActivity()"
+                          ng-disabled="vm.disabled"
                           ng-options="activity.title for activity in vm.activities">
                     <option value="">Select Department</option>
                   </select>
@@ -134,6 +142,7 @@
               <div class="select is-fullwidth">
                 <select ng-model="vm.selectedAllowance"
                         ng-change="vm.getSelectedAllowance()"
+                        ng-disabled="vm.disabled"
                         ng-options="allowance.title for allowance in vm.allowances">
                   <option value="">Select Allowance</option>
                 </select>
@@ -154,7 +163,9 @@
           <div class="level-right">
             <div class="field is-grouped">
               <p class="control">
-                <a class="button is-primary" ng-click="vm.updateVehicle()">
+                <a class="button is-primary"
+                   ng-disabled="vm.disabled"
+                   ng-click="vm.updateVehicle()">
                   Update
                 </a>
               </p>
@@ -174,6 +185,7 @@
                        type="text"
                        ng-model="vm.officer.plate"
                        placeholder="e.g. 2525AD"
+                       ng-disabled="vm.disabled"
                        maxlength=6>
               </div>
             </div>
@@ -190,6 +202,7 @@
                 <input class="input form-ctrl-date"
                        type="text"
                        ng-model="vm.officer.make"
+                       ng-disabled="vm.disabled"
                        placeholder="e.g. Honda">
               </div>
             </div>
@@ -206,6 +219,7 @@
                 <input class="input form-ctrl-date"
                        type="text"
                        ng-model="vm.officer.model"
+                       ng-disabled="vm.disabled"
                        placeholder="e.g. Civic">
               </div>
             </div>
@@ -223,6 +237,7 @@
                        type="text"
                        ng-model="vm.officer.vehicle_year"
                        placeholder="e.g. 2002"
+                       ng-disabled="vm.disabled"
                        maxlength=4>
               </div>
             </div>
@@ -235,16 +250,7 @@
           <div class="level-left">
             <h1 class="subtitle is-5">Vehicle Document Expiry Dates</h1>
           </div>
-          <div class="level-right">
-            <!-- <div class="field is-grouped">
-              <p class="control">
-                <a class="button is-primary"
-                   ng-click="vm.update('document')">
-                  Update
-                </a>
-              </p>
-            </div> -->
-          </div>
+          <div class="level-right"></div>
         </div>
         <hr />
         <div class="field is-horizontal">
@@ -256,8 +262,12 @@
               <div class="control">
                 <input class="input form-ctrl-date"
                        type="date"
+                       ng-disabled="vm.disabled"
                        ng-model="vm.officer.license">
-                       <a class="button is-primary" ng-click="vm.updateDoc(vm.officer.docs[0].id, vm.officer.license, vm.officer.id)">Update</a>
+                       <a class="button is-primary"
+                       ng-disabled="vm.disabled"
+                       ng-click="vm.updateDoc(vm.officer.docs[0].id, vm.officer.license, vm.officer.id)">
+                       Update</a>
               </div>
 
               <p class="help" style="font-size:14px; color:#276CDA">The expiry date of the employee's driver's license.</p>
@@ -272,8 +282,15 @@
           <div class="field-body">
             <div class="field">
               <div class="control">
-                <input class="input form-ctrl-date" type="date" ng-model="vm.officer.fitness">
-                <a class="button is-primary" ng-click="vm.updateDoc(vm.officer.docs[1].id, vm.officer.fitness, vm.officer.id)">Update</a>
+                <input class="input
+                       form-ctrl-date"
+                       type="date"
+                       ng-disabled="vm.disabled"
+                       ng-model="vm.officer.fitness">
+                <a class="button is-primary"
+                   ng-disabled="vm.disabled"
+                   ng-click="vm.updateDoc(vm.officer.docs[1].id, vm.officer.fitness, vm.officer.id)">
+                   Update</a>
                 <p class="help" style="font-size:14px; color:#276CDA">The expiry date of the vehicle's fitness certificate.</p>
               </div>
             </div>
@@ -287,8 +304,12 @@
           <div class="field-body">
             <div class="field">
               <div class="control">
-                <input class="input form-ctrl-date" type="date" ng-model="vm.officer.registration">
-                <a class="button is-primary" ng-click="vm.updateDoc(vm.officer.docs[2].id, vm.officer.registration, vm.officer.id)">Update</a>
+                <input class="input form-ctrl-date"
+                       ng-disabled="vm.disabled"
+                       type="date" ng-model="vm.officer.registration">
+                <a class="button is-primary"
+                          ng-disabled="vm.disabled"
+                          ng-click="vm.updateDoc(vm.officer.docs[2].id, vm.officer.registration, vm.officer.id)">Update</a>
               </div>
               <p class="help" style="font-size:14px; color:#276CDA">The expiry date of the vehicle's registration certificate.</p>
             </div>
@@ -303,62 +324,59 @@
             <div class="field">
               <div class="control">
                 <input class="input form-ctrl-date"
+                        ng-disabled="vm.disabled"
                         type="date" ng-model="vm.officer.insurance">
-                <a class="button is-primary" ng-click="vm.updateDoc(vm.officer.docs[3].id, vm.officer.insurance, vm.officer.id)">Update</a>
+                <a class="button is-primary"
+                          ng-disabled="vm.disabled"
+                          ng-click="vm.updateDoc(vm.officer.docs[3].id, vm.officer.insurance, vm.officer.id)">Update</a>
               </div>
               <p class="help" style="font-size:14px; color:#276CDA">The expiry date of the certificate of insurance.</p>
             </div>
           </div>
         </div>
+      </form>
+    </div>
 
-
-        <!-- <div class="field is-horizontal">
-          <div class="field-label is-normal">
-
-          </div>
-          <div class="field-body">
-            <p class="control">
-              <label class="checkbox label">
-                <input type="checkbox" ng-click="vm.toggle()" ng-model="vm.officer.is_owner">
-                Employee is the owner of the vehicle
-              </label>
-            </p>
-          </div>
-        </div> -->
-
-      <!-- <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Permission Expiry</label>
+    <div class="box">
+      <div class="level">
+        <div class="level-left">
+          <h1 class="subtitle is-5" style="color:red">Remove from Database</h1>
         </div>
-        <div class="field-body">
-          <div class="field">
-            <div class="control">
-              <input class="input form-ctrl-date"
-                     type="date"
-                     ng-model="vm.officer.permission_date">
-            <a class="button is-primary" ng-click="vm.updateDoc(vm.officer.docs[4].id, vm.officer.permission_date, vm.officer.id)">Update</a>
-            </div>
-          </div>
-        </div>
-      </div> -->
-
-      <div class="field is-horizontal">
-          <div class="field-label is-normal">
-            <label class="label">Comments</label>
-          </div>
-          <div class="field-body">
-            <div class="field">
-              <div class="control">
-                <textarea class="textarea"
-                          ng-model="vm.officer.comments"
-                          placeholder="Provide details on the permission to use vehicle.">
-                </textarea>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="level-right"></div>
       </div>
-    </form>
+      <hr />
+      <p>
+        Please be certain that you want to remove <span style="text-transform:capitalize"><strong>{{vm.officer.name}}</strong></span>
+        from the Traveling Officers Database.
+      </p>
+      <a class="button is-danger"
+        style="margin-top:12px"
+        ng-disabled="!vm.isOfficer"
+        ng-click="vm.toggle()">Remove Officer</a>
+    </div>
+  </div>
+
+  <div class="modal ng-class:{'is-active': vm.active}">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <div class="box">
+        <h1 class="subtitle is-5">Are you sure?</h1>
+        <hr />
+        <p style="margin-bottom: 12px">
+          Please type the name of the traveling officer <strong>({{vm.officer.name}})</strong> to confirm.
+        </p>
+        <div class="field">
+          <div class="control">
+            <input class="input" type="text" ng-model="vm.confirm">
+          </div>
+        </div>
+        <a class="is-light button" style="color:red" ng-click="vm.removeOfficer()">
+          I understand the consequences, remove&nbsp<span class="capitalize">{{vm.officer.name}}
+          </span>
+        </a>
+    </div>
+  </div>
+  <button class="modal-close is-large" aria-label="close" ng-click="vm.toggle()"></button>
   </div>
 </div>
 </div>

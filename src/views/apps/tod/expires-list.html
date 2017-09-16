@@ -22,19 +22,21 @@
         <thead>
           <tr style="text-transform:uppercase; font-weight:bold;font-size:14px;">
             <th>name</th>
+            <th>classification</th>
+            <th>department/activity</th>
             <th>document title</th>
             <th>expiry date</th>
-            <th>email</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat="officer in vm.officers | filter:search" style="font-size:15px">
             <td style="text-transform: capitalize">{{officer.name}}</td>
+            <td>{{officer.class_title}}</td>
+            <td><strong>{{officer.act_title}}</strong></td>
             <td style="text-transform: capitalize">{{officer.title}} </td>
-            <td>{{officer.expiry_date | date: 'EEEE, MMMM d, yyyy'}}</td>
-              <td><a ng-href="{{officer.email}}" style="color: #1F78D1">{{officer.email}}</a></td>
-            <td><a ng-href="#!/dashboard/apps/tod/officers/{{officer.employee_id}}/edit" style="color: #1F78D1">Edit</a></td>
+            <td>{{officer.expiry_date | date: 'EEE, MMM d, yyyy'}}</td>
+            <td><a ng-href="#!/dashboard/apps/tod/officers/{{officer.employee_id}}/edit" style="color: #1F78D1" ng-if="vm.canUpdate">Edit</a></td>
           </tr>
         </tbody>
       </table>

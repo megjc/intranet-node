@@ -24,9 +24,8 @@
        * the logout button is clicked.
        */
       function logout(){
-        //notify.emitEvent('notification-logout')
         login.deleteToken()
-        $location.url('/users/login')
+        $location.url('/users/login?logout=true')
       }
   }
 })();

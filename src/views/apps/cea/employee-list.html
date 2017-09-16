@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container is-fluid">
 <div ng-include="'views/nav/nav-bar.html'"></div>
 
 <div class="level" style="margin-top:24px;">
@@ -28,7 +28,7 @@
           <tr style="font-size:15px;cursor:pointer" ng-repeat="employee in vm.employees | filter:search">
             <td style="text-transform: capitalize" title="{{employee.name}}">{{employee.name}}</td>
             <td style="text-transform: capitalize" title="{{employee.position}}">{{employee.position}} - {{employee.title}}</td>
-            <td>{{employee.start_date | date: 'MMM dd, yyyy'}} - {{employee.end_date | date: 'MMM. dd, yyyy'}}</td>
+            <td>{{employee.start_date | date: 'MMM d, yyyy'}} - {{employee.end_date | date: 'MMM d, yyyy'}}</td>
           </tr>
         </tbody>
       </table>

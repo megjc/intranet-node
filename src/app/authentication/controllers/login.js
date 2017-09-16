@@ -27,7 +27,7 @@
        * user to the dashboard.
        */
       function activate() {
-        showMessage( $routeParams.session_expired )
+        showMessage( $routeParams )
         if(login.getToken() != false){
           login.validateToken().then(function(res){
             if(res.data) $location.path('/dashboard/apps')
@@ -67,13 +67,24 @@
        * @param  {[type]} session_expired [description]
        * @return {[type]}                 [description]
        */
-      function showMessage( session_expired ){
-        var message = 'Your session has expired. Please enter your username and password.'
-        if(session_expired !== undefined){
-          if(session_expired == 'true'){
-            vm.notification = notify.builder( message, false, true)
-            notify.emitEvent('notification')
+      function showMessage( route_params ){
+        var message = '',
+            success,
+            found = false,
+            states = {
+              'session_expired': {'message': 'Your session has expired. Please enter your username and password.', 'success': false},
+              'logout': {'message': 'Logout successful.', 'success': true}
+            }
+        for( var state in states ){
+          if(route_params.hasOwnProperty(state)){
+            message = states[state]['message']
+            success = states[state]['success']
+            found = true
           }
+        }
+        if(found){
+          vm.notification = notify.builder( message, success, true)
+          notify.emitEvent('notification')
         }
       }
   }

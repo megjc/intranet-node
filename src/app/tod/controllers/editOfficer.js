@@ -5,8 +5,15 @@
         .module('apps.tod')
         .controller('EditOfficer', EditOfficer);
 
-    EditOfficer.$inject = ['$window','$scope','$routeParams', 'notify', 'todSrv', 'allowances', 'classifications', 'activities'];
-
+    EditOfficer.$inject = ['$window',
+                           '$scope',
+                           '$routeParams',
+                           'notify',
+                           'todSrv',
+                           'allowances',
+                           'classifications',
+                           'activities'
+                         ]
     /* @ngInject */
     function EditOfficer($window, $scope, $routeParams, notify, todSrv, allowances, classifications, activities) {
         var vm = this;
@@ -16,6 +23,12 @@
         vm.updateVehicle = updateVehicle
         vm.getSelectedActivity = getSelectedActivity
         vm.getSelectedAllowance = getSelectedAllowance
+        vm.getSelectedClassification = getSelectedClassification
+        vm.toggle = toggle
+        vm.removeOfficer = removeOfficer
+        vm.confirm = ''
+        vm.active = false
+        vm.disabled = false
 
         function activate() {
           todSrv.getOfficerById($routeParams.id).then(function(officer){
@@ -26,6 +39,8 @@
             vm.selectedClassification = findinList("id", officer.classification_id, classifications)
             vm.selectedAllowance = findinList("id", officer.allowance_type, allowances)
             vm.selectedActivity = findinList("id", officer.activity_id, activities)
+            vm.isOfficer = (officer.is_traveling == 'T') ? true : false
+            vm.disabled = (officer.is_traveling == 'F') ? true : false
             if(officer.docs.length > 0){
               vm.officer.license = new Date(officer.docs[0].expiry_date)
               vm.officer.fitness = new Date(officer.docs[1].expiry_date)
@@ -48,8 +63,17 @@
         function update( section ){
             todSrv.update( vm.officer, section, null, null).then(function(res){
               vm.message = res
+              activate()
               notify.emitEvent('notification')
+              scroll()
             })
+        }
+
+        function removeOfficer(){
+          if(todSrv.compareString( vm.confirm, vm.officer.name)){
+             update('remove-officer')
+             toggle()
+          }
         }
 
         function getSelectedActivity(){
@@ -60,10 +84,15 @@
          vm.officer.allowance_type = vm.selectedAllowance.id
         }
 
+        function getSelectedClassification(){
+          vm.officer.classification_id = vm.selectedClassification.id
+        }
+
         function updateVehicle(){
           todSrv.updateVehicle(vm.officer).then(function(res){
             vm.message = res
             notify.emitEvent('notification')
+            scroll()
           })
         }
 
@@ -76,7 +105,16 @@
           todSrv.updateDoc( data ).then(function(res){
             vm.message = res
             notify.emitEvent('notification')
+            scroll()
           })
+        }
+
+        function toggle(){
+          vm.active = !vm.active
+        }
+
+        function scroll(){
+          $window.scrollTo(0,0)
         }
 
         notify.subscribe($scope, 'notification', function(){

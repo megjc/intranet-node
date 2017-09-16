@@ -1,7 +1,7 @@
 'use strict'
 const model = require('./base').model
 const SQL = {
-    GET: 'SELECT id, title FROM classifications'
+    GET: 'SELECT id, title FROM classifications ORDER BY title'
 }
 /**
  * Get a list of classifications
