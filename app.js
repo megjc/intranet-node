@@ -27,6 +27,7 @@ const express = require("express"),
     activities = require('./controllers/activities/routes'),
     documents = require('./controllers/documents/routes'),
     vehicles = require('./controllers/vehicles/routes'),
+    notifications = require('./controllers/notifications/routes'),
     /********* End of Endpoints ***************/
     srcDir = __dirname + "/src/",
     api_version = '/api'
@@ -51,6 +52,7 @@ app.use(api_version, classifications)
 app.use(api_version, activities)
 app.use(api_version, documents)
 app.use(api_version, vehicles)
+app.use(api_version, notifications)
 app.use('/', admin)
 
 process.on('uncaughtException', (err)=>{

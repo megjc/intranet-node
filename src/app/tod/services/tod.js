@@ -20,7 +20,8 @@
             updateVehicle: updateVehicle,
             removeOfficer: removeOfficer,
             checkSection: checkSection,
-            compareString: compareString
+            compareString: compareString,
+            sendNotification: sendNotification
         }
 
         return service
@@ -184,6 +185,12 @@
 
         function compareString( arg, arg1 ){
           return arg.toLowerCase() == arg1.toLowerCase()
+        }
+
+        function sendNotification( docs ){
+          return $http.post('/api/notify', docs).then(function(res){
+            return res.data
+          })
         }
 
     }

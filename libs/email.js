@@ -1,46 +1,52 @@
-/**
- * @desc Send application emails.
- * @author Tremaine Buchanan
- * @since 2017-06
- */
 'use strict'
-const exec = require('child_process').exec
-let email = {
-    subject: '',
-    body: '',
-    receipent: '',
-    mail: '',
-  /**
-   * [build description]
-   * @param  number id        Ticket id
-   * @param  string receipent Receipent's email address
-   */
-  build: ( id, receipent )=>{
-    this.subject = '\"ICT Help Desk Ticket #' + id + '\"'
-    this.body = '\"Good day, \n\nThanks for submitting your issue through the ' +
-                'ICT Help Desk application.\n\nYour issue will be resolved ' +
-                'within 24-48 hours.\n\nIf our team is unable to resolve your ' +
-                'issue within a timely manner or within the stipulated ' +
-                'timeframe, we will promptly communicate same to you. ' +
-                '\n\nSincerely, \nInformation, Technology and Communication ' +
-                'Branch,\nMinistry of Economic Growth and Job Creation"'
-    this.receipent = receipent
-    this.mail = 'echo ' + this.body + " " +
-           '| mail -s ' + this.subject + " " +
-           this.receipent + "," + process.env.ICT_EMAIL + " " + '-aFROM:' + process.env.EMAIL_FROM + ''
-  },
-  /**
-   * Executes process to send email.
-   */
-  send: ()=>{
-    if(process.env.SEND_EMAILS == 'true'){
-      return exec(this.mail, (error, stdout, sterr)=>{
-        if(error) return console.log(error)
-
-        console.log('Email sent successfully')
-      })
-    }
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+let messages = {
+  'expired_docs': {
+    from: 'Traveling Officers Database <do_not_reply@megjc.gov.jm>',
+    subject: 'Provision of updated vehicle documents'
   }
 }
 
-exports.email = email
+exports.sendEmail = (details)=>{
+  let message = getMessage(),
+      name = details.name,
+      list_of_docs = buildList(details.docs),
+      message_start = `<div style="margin: 0 auto;width:600px;height:auto;font-size:14px;background-color:#FFFFFF">Good day ${name},
+                      <p>Based on our records, please see below related vehicle documents and respective expiry dates:</p>
+                      <div style="width:auto;height:auto;background-color:#F5F5F5;padding: 12px 0 12px 0">
+                      ${list_of_docs}
+                      </div>`,
+      message_end = `<p>If available, kindly submit outstanding documents as soon as possible to the <strong>Human Resource and Management Divison.</strong></p>
+                      <p>If you have already submitted documents listed in this email, kindly disregard this message.</p>
+                      <p>Best,</p>
+                        <div style="text-align:center;position:fixed;bottom:0;height:auto;min-height:200px;margin:0 auto; width:600px">
+                            <p style="color:#999999;font-size:11px">
+                                  This is an auto generated email sent from the <strong>Traveling Officers Database</strong><br />
+                                  Developed by the Software Development Team, <br />
+                                  Information, Communication and Technology Branch,<br />
+                                  Ministry of Economic Growth and Job Creation,<br />
+                                  The Towers, 25 Dominica Drive, Kingston 5 <br />
+                                  Email us at <a href="mailto:ict@megjc.gov.jm">ict@megjc.gov.jm</a>
+                            </p>
+                        </div>
+                      </div>`
+  message.to = details.email
+  message.html = message_start + message_end
+  sgMail.send(message).then(()=>console.log('Mail successfully sent'))
+}
+
+function buildList( docs ){
+  let ul_start = '<ul>',
+      ul_end = '</ul>',
+      list_items = '',
+      i = 0, len = docs.length
+  for(; i < len; i++)
+     list_items += `<li><strong> ${docs[i].title} expires on ${docs[i].expiry_date} </strong></li>`
+  let list = ul_start + list_items + ul_end
+  return list
+}
+
+function getMessage(){
+  return messages['expired_docs']
+}

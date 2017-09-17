@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container is-fluid">
 <div ng-include="'views/nav/nav-bar.html'"></div>
 
 <div class="level" style="margin-top:24px;">
@@ -22,21 +22,23 @@
         <thead>
           <tr style="text-transform:uppercase; font-weight:bold;font-size:14px;">
             <th>name</th>
-            <th>classification</th>
+            <!-- <th>classification</th> -->
             <th>department/activity</th>
             <th>document title</th>
             <th>expiry date</th>
+            <th></th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat="officer in vm.officers | filter:search" style="font-size:15px">
             <td style="text-transform: capitalize">{{officer.name}}</td>
-            <td>{{officer.class_title}}</td>
+            <!-- <td>{{officer.class_title}}</td> -->
             <td><strong>{{officer.act_title}}</strong></td>
             <td style="text-transform: capitalize">{{officer.title}} </td>
             <td>{{officer.expiry_date | date: 'EEE, MMM d, yyyy'}}</td>
             <td><a ng-href="#!/dashboard/apps/tod/officers/{{officer.employee_id}}/edit" style="color: #1F78D1" ng-if="vm.canUpdate">Edit</a></td>
+            <td><a href style="color: #1F78D1" ng-click="vm.notify( officer.employee_id )">Notify</a></td>
           </tr>
         </tbody>
       </table>
@@ -138,5 +140,30 @@
   </div>
   <button class="modal-close is-large" aria-label="close"></button>
 </div>
-
+<div class="modal ng-class:{'is-active': vm.active}">
+<div class="modal-background"></div>
+<div class="modal-content">
+  <div class="box">
+      <h1 class="subtitle is-5" style="color:#276CDA">Send Notification</h1>
+      <p style="margin-bottom: 12px">
+        An email will be sent notifying <strong><span class="capitalize">{{vm.docs[0].name}}</span></strong> of the following outstanding
+        vehicle documents:
+      </p>
+      <ul style="margin-bottom:12px;">
+        <li ng-repeat="doc in vm.docs" class="capitalize">
+          <strong>{{doc.title}}</strong>
+        </li>
+      </ul>
+      <a class="is-light button" ng-click="vm.toggle()">
+        Cancel
+        </span>
+      </a>
+      <a class="is-info button" ng-click="vm.sendNotification( vm.docs )">
+        Send notification
+        </span>
+      </a>
+  </div>
+</div>
+<button class="modal-close is-large" aria-label="close" ng-click="vm.toggle()"></button>
+</div>
 </div> <!-- end of container -->

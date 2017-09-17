@@ -6,6 +6,7 @@ const filter = require('../../libs/filter')
 const moment = require('moment')
 const SQL = require('../../libs/sql').statements
 const logic = require('../../middlewares/logic/employee').Employee
+const _ = require('underscore')
 
 let employees = {
   /**
