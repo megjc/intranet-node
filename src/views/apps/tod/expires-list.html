@@ -22,23 +22,25 @@
         <thead>
           <tr style="text-transform:uppercase; font-weight:bold;font-size:14px;">
             <th>name</th>
-            <!-- <th>classification</th> -->
+            <th>classification</th>
             <th>department/activity</th>
-            <th>document title</th>
-            <th>expiry date</th>
+            <th>documents</th>
             <th></th>
-            <th></th>
+            <!-- <th></th> -->
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="officer in vm.officers | filter:search" style="font-size:15px">
-            <td style="text-transform: capitalize">{{officer.name}}</td>
-            <!-- <td>{{officer.class_title}}</td> -->
-            <td><strong>{{officer.act_title}}</strong></td>
-            <td style="text-transform: capitalize">{{officer.title}} </td>
-            <td>{{officer.expiry_date | date: 'EEE, MMM d, yyyy'}}</td>
+          <tr ng-repeat="officer in vm.officers | filter:search" style="font-size:15px;text-transform: capitalize">
+            <td>{{officer.name}}</td>
+            <td>{{officer.classification}}</td>
+            <td>{{officer.department}}</td>
+            <td>
+              <p ng-repeat="doc in officer.docs" style="color:#FF2B56">
+                {{doc.title}} - {{doc.expiry_date | date: 'EEE, MMMM d, yyyy'}}
+              </p>
+            </td>
             <td><a ng-href="#!/dashboard/apps/tod/officers/{{officer.employee_id}}/edit" style="color: #1F78D1" ng-if="vm.canUpdate">Edit</a></td>
-            <td><a href style="color: #1F78D1" ng-click="vm.notify( officer.employee_id )">Notify</a></td>
+            <!-- <td><a href style="color: #1F78D1" ng-click="vm.notify( officer )">Notify</a></td> -->
           </tr>
         </tbody>
       </table>
@@ -105,19 +107,6 @@
   </div>
 </div>
 
-<!-- <div class="field is-horizontal">
-  <div class="field-label is-normal">
-    <label class="label">Question</label>
-  </div>
-  <div class="field-body">
-    <div class="field">
-      <div class="control">
-        <textarea class="textarea" placeholder="Explain how we can help you"></textarea>
-      </div>
-    </div>
-  </div>
-</div> -->
-
 <div class="field is-horizontal">
   <div class="field-label">
     <!-- Left empty for spacing -->
@@ -149,9 +138,9 @@
         An email will be sent notifying <strong><span class="capitalize">{{vm.docs[0].name}}</span></strong> of the following outstanding
         vehicle documents:
       </p>
-      <ul style="margin-bottom:12px;">
+      <ul style="margin-bottom:12px;background-color:#f5f5f5;padding:12px">
         <li ng-repeat="doc in vm.docs" class="capitalize">
-          <strong>{{doc.title}}</strong>
+          <strong>{{doc.title}} - {{doc.expiry_date | date: 'EEEE, MMMM d, yyyy'}}</strong>
         </li>
       </ul>
       <a class="is-light button" ng-click="vm.toggle()">

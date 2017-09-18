@@ -21,15 +21,9 @@
           vm.officers = officers
         }
 
-        function notify( officer_id ){
-          var docs = []
-          vm.officers.forEach(function(officer){
-              if(officer.employee_id == officer_id){
-                docs.push(officer)
-              }
-          })
+        function notify( officer ){
+          vm.docs = officer.docs
           toggle()
-          vm.docs = docs
         }
 
         function toggle(){

@@ -125,7 +125,28 @@ let employees = {
     }
     employee.index(options, (err, employees)=>{
       if(err) return res.status(400).json({'text': 'Error in listing employees with expired documents', 'success': false, 'err': err})
-      res.json(employees)
+      /**
+       * The list of employees with expired documents
+       * returned from the database are not grouped by employee name.
+       * The function _.groupedBy() from the underscore library
+       * groups the employees list by name. The result is an object of
+       * form {'name': [Object]}. The object is traversed and
+       * an array of objects is created. Each object is of the form
+       * {'key': 'value', 'docs': [Object]}
+       */
+      let employeesgroupedbyName = _.groupBy(employees, 'name'),
+          employeesTransformed = []
+      for( let employeeName in employeesgroupedbyName ){
+        employeesTransformed.push({
+          'employee_id': employeesgroupedbyName[employeeName][0].employee_id,
+          'email': employeesgroupedbyName[employeeName][0].email,
+          'classification': employeesgroupedbyName[employeeName][0].class_title,
+          'department': employeesgroupedbyName[employeeName][0].act_title,
+          'name': employeeName,
+          'docs': employeesgroupedbyName[employeeName]
+        })
+      }
+      res.json(employeesTransformed)
     })
   }
 }
