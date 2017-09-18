@@ -23,6 +23,25 @@
               }
             },
             access: { restricted: true}
+          }).when('/dashboard/apps/tod/notifications', {
+            templateUrl: 'views/apps/tod/notification-list.html',
+            controller: 'NotificationList as vm',
+            title: 'Notifications',
+            resolve: {
+              notifications: function(todSrv){
+                return todSrv.getNotifications()
+              },
+              create: function(permission){
+                return permission.getByType('create')
+              },
+              read: function(permission){
+                return permission.getByType('read')
+              },
+              update: function(permission){
+                return permission.getByType('update')
+              }
+            },
+            access: { restricted: true}
           }).when('/dashboard/apps/tod/officers', {
             templateUrl: 'views/apps/tod/officer-listing.html',
             controller: 'OfficerList as vm',

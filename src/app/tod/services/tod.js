@@ -21,10 +21,18 @@
             removeOfficer: removeOfficer,
             checkSection: checkSection,
             compareString: compareString,
-            sendNotification: sendNotification
+            sendNotification: sendNotification,
+            getNotifications: getNotifications
         }
 
         return service
+
+        function getNotifications(){
+          var app_id = sessionStorage.getItem('_ai')
+          return $http.get('/api/notifications/' + app_id).then(function(res){
+            return res.data
+          })
+        }
 
         function getOfficers(){
           return $http.get('/api/employees').then(function(res){
@@ -188,7 +196,8 @@
         }
 
         function sendNotification( docs ){
-          return $http.post('/api/notify', docs).then(function(res){
+          var app_id = sessionStorage.getItem('_ai')
+          return $http.post('/api/notify/' + app_id, docs).then(function(res){
             return res.data
           })
         }

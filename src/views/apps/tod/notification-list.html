@@ -1,0 +1,22 @@
+<div class="container is-fluid">
+<div ng-include="'views/nav/nav-bar.html'"></div>
+
+<div class="level" style="margin-top:24px;">
+  <div class="level-left"></div>
+  <div class="level-right">
+    <a href="#!/dashboard/apps/tod/officers/new"
+       class="button is-primary" ng-if="vm.canCreate">Add officer
+     </a>
+  </div>
+</div>
+<div class="columns">
+  <div class="column is-2" ng-include="'views/apps/tod/side-menu.html'"></div>
+  <div class="column is-10">
+    <p ng-repeat="notification in vm.notifications | filter: search" style="border-bottom: 1px solid #F5f5f5;padding-bottom: 6px">
+        <strong>{{notification.receipent}}</strong> notified on <span style="color: #1F78D1">
+          {{notification.created_on | date: 'EEEE, MMMM d, yyyy @ h:mm:ss a'}}</span> by <strong>{{notification.sent_by}}</strong>
+          of outstanding vehicles documents.
+    </p>
+  </div>
+</div> <!-- end of columns -->
+</div> <!-- end of container -->

@@ -4,11 +4,12 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 let messages = {
   'expired_docs': {
     from: 'Traveling Officers Database <do_not_reply@megjc.gov.jm>',
-    subject: 'Provision of updated vehicle documents'
+    subject: 'Provision of updated vehicle documents',
+    cc: [process.env.CC_DIR, process.env.CC_OFFICER]
   }
 }
 
-exports.sendEmail = (details)=>{
+exports.sendEmail = (details, cb)=>{
   let message = getMessage(),
       name = details.name,
       list_of_docs = buildList(details.docs),
@@ -17,7 +18,7 @@ exports.sendEmail = (details)=>{
                       <div style="width:auto;height:auto;background-color:#F5F5F5;padding: 12px 0 12px 0">
                       ${list_of_docs}
                       </div>`,
-      message_end = `<p>If available, kindly submit outstanding documents as soon as possible to the <strong>Human Resource and Management Divison.</strong></p>
+      message_end = `<p>If available, kindly submit outstanding documents as soon as possible to the <strong>Human Resource Management and Development Branch.</strong></p>
                       <p>If you have already submitted documents listed in this email, kindly disregard this message.</p>
                       <p>Best,</p>
                         <div style="text-align:center;position:fixed;bottom:0;height:auto;min-height:200px;margin:0 auto; width:600px">
@@ -33,7 +34,7 @@ exports.sendEmail = (details)=>{
                       </div>`
   message.to = details.email
   message.html = message_start + message_end
-  sgMail.send(message).then(()=>console.log('Mail successfully sent'))
+  sgMail.send(message, cb)
 }
 
 function buildList( docs ){
@@ -42,7 +43,7 @@ function buildList( docs ){
       list_items = '',
       i = 0, len = docs.length
   for(; i < len; i++)
-     list_items += `<li><strong> ${docs[i].title} expires on ${docs[i].expiry_date} </strong></li>`
+     list_items += `<li><strong> ${docs[i].title} - ${docs[i].expiry_date} </strong></li>`
   let list = ul_start + list_items + ul_end
   return list
 }

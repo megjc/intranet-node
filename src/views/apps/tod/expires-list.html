@@ -26,7 +26,7 @@
             <th>department/activity</th>
             <th>documents</th>
             <th></th>
-            <!-- <th></th> -->
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -40,7 +40,7 @@
               </p>
             </td>
             <td><a ng-href="#!/dashboard/apps/tod/officers/{{officer.employee_id}}/edit" style="color: #1F78D1" ng-if="vm.canUpdate">Edit</a></td>
-            <!-- <td><a href style="color: #1F78D1" ng-click="vm.notify( officer )">Notify</a></td> -->
+            <td><a href style="color: #1F78D1" ng-click="vm.notify( officer )" ng-if="vm.canUpdate">Notify</a></td>
           </tr>
         </tbody>
       </table>
