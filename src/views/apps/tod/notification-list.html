@@ -12,6 +12,12 @@
 <div class="columns">
   <div class="column is-2" ng-include="'views/apps/tod/side-menu.html'"></div>
   <div class="column is-10">
+    <div class="box" ng-if="vm.notifications.length == 0">
+      <p>
+        There are <strong>{{vm.notifications.length}}</strong> notifications.
+      </p>
+    </div>
+
     <p ng-repeat="notification in vm.notifications | filter: search" style="border-bottom: 1px solid #F5f5f5;padding-bottom: 6px">
         <strong>{{notification.receipent}}</strong> notified on <span style="color: #1F78D1">
           {{notification.created_on | date: 'EEEE, MMMM d, yyyy @ h:mm:ss a'}}</span> by <strong>{{notification.sent_by}}</strong>

@@ -41,6 +41,22 @@ exports.update = (options, cb)=>{
   })
 }
 
+exports.build = ( data )=>{
+  return {
+    'name': data.name,
+    'email': data.email,
+    'is_traveling': 'T',
+    'emp_type': 'P',
+    'start_date': new Date(),
+    'end_date': new Date(), //TODO should allow for currently employeed
+    'allowance_type': data.allowance_type,
+    'affiliation': 'blank',
+    'activity_id': data.activity_id,
+    'classification_id': data.classification_id,
+    'position': data.position
+  }
+}
+
 function _determineEmployeeType(type){
   let employee_type = false
   switch (type) {

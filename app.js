@@ -11,7 +11,6 @@ const express = require("express"),
     cookieParser = require('cookie-parser'),
     helmet = require('helmet'),
     app = express(),
-
     /**
      * Endpoints
      */
@@ -28,7 +27,9 @@ const express = require("express"),
     documents = require('./controllers/documents/routes'),
     vehicles = require('./controllers/vehicles/routes'),
     notifications = require('./controllers/notifications/routes'),
+    logs = require('./controllers/logs/routes'),
     /********* End of Endpoints ***************/
+    bootloader = require('./libs/bootloader').Bootloader,
     srcDir = __dirname + "/src/",
     api_version = '/api'
 
@@ -53,7 +54,10 @@ app.use(api_version, activities)
 app.use(api_version, documents)
 app.use(api_version, vehicles)
 app.use(api_version, notifications)
+app.use(api_version, logs)
 app.use('/', admin)
+
+bootloader.init()
 
 process.on('uncaughtException', (err)=>{
   console.log(err.stack)

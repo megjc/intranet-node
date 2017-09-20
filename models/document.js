@@ -37,3 +37,15 @@ exports.update = ( options, cb)=>{
     cb(null, result)
   })
 }
+
+exports.builder = ( data, employee_id)=>{
+  return {
+    'emp_id': employee_id,
+    'make': data.make,
+    'model': data.model,
+    'year': data.vehicle_year,
+    'plate': data.plate,
+    'comments': data.comment || '',
+    'is_owner': data.is_owner.toString()
+  }
+}

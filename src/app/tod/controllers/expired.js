@@ -1,14 +1,18 @@
 (function() {
-    'use strict';
-
-    angular
-        .module('apps.tod')
-        .controller('ExpiryList', ExpiryList);
-  ExpiryList.$inject = ['$location', 'officers', 'create', 'read', 'update', 'todSrv', 'notify']
+  'use strict'
+  angular.module('apps.tod').controller('ExpiryList', ExpiryList)
+  ExpiryList.$inject = ['$location',
+                        '$scope',
+                        'officers',
+                        'create',
+                        'read',
+                        'update',
+                        'todSrv',
+                        'notify']
     /* @ngInject */
-    function ExpiryList($location, officers, create, read, update, todSrv, notify) {
+    function ExpiryList($location, $scope, officers, create, read, update, todSrv, notify) {
         var vm = this
-        vm.notify = notify
+        vm.notifyOfficer = notifyOfficer
         vm.sendNotification = sendNotification
         vm.active = false
         vm.toggle = toggle
@@ -21,7 +25,7 @@
           vm.officers = officers
         }
 
-        function notify( officer ){
+        function notifyOfficer( officer ){
           vm.docs = officer.docs
           toggle()
         }
@@ -33,8 +37,13 @@
         function sendNotification( docs ){
           toggle()
           todSrv.sendNotification( docs ).then(function(res){
-            console.log(res)
+            vm.message = res
+            notify.emitEvent('notification')
           })
         }
+
+        notify.subscribe($scope, 'notification', function(){
+          vm.notification = notify.builder(vm.message.text, vm.message.success, true)
+        })
     }
 })();

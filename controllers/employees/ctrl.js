@@ -7,7 +7,7 @@ const moment = require('moment')
 const SQL = require('../../libs/sql').statements
 const logic = require('../../middlewares/logic/employee').Employee
 const _ = require('underscore')
-
+const emitter = require('../../libs/event')
 let employees = {
   /**
    * Get a list of all employees
@@ -30,6 +30,7 @@ let employees = {
    */
   show: (req, res)=>{
     let options = logic.buildIdQuery( req.params.id )
+    emitter.emitEvent('eventA')
     employee.show(options, (err, employee)=>{
       if(err) return res.json(err)
       document.index(req.params.id, (err, docs)=>{
@@ -42,20 +43,9 @@ let employees = {
   create: (req, res)=>{
     if(req.query.traveling){
       if(req.query.traveling == 'true'){
-        let emp = {
-          'name': req.body.name,
-          'email': req.body.email,
-          'is_traveling': 'T',
-          'emp_type': 'P',
-          'start_date': new Date(),
-          'end_date': new Date(), //TODO should allow for currently employeed
-          'allowance_type': req.body.allowance_type,
-          'affiliation': 'blank',
-          'activity_id': req.body.activity_id,
-          'classification_id': req.body.classification_id,
-          'position': req.body.position
-        }
+        let emp = employee.build( req.body )
         employee.create(emp, (err, id)=>{
+          //TODO remove messages to own library
           if(err) return res.status(400).json({text:"We were unable to create traveling officer.", success: false, 'err': err})
           if(req.body.vehicle_required == true){
             let documents = createDocuments({
@@ -68,21 +58,14 @@ let employees = {
               'id': id.insertId })
             document.create(documents, (err, result)=>{
               if(err) return res.json(err)
-                let vehicle_details = {
-                  'emp_id': id.insertId,
-                  'make': req.body.make,
-                  'model': req.body.model,
-                  'year': req.body.vehicle_year,
-                  'plate': req.body.plate,
-                  'comments': req.body.comment || '',
-                  'is_owner': req.body.is_owner.toString()
-                }
+                let vehicle_details = document.build( req.body, id.insertId)
               vehicle.create(vehicle_details,(err, result)=>{
                 if(err) return res.json(err)
                 return res.json({text: 'Traveling officer successfully created.', success: true})
               })
             })
           }else{
+
             return res.json({text: 'Traveling officer successfully created.', success: true})
           }
         })
@@ -115,7 +98,7 @@ let employees = {
     }
     employee.update(options, (err, result)=>{
       if(err) return res.status(400).json({'text': 'Error in updating record', 'err': err, 'success': false})
-      res.json({'text': "Your update was completed successfully", success:true})
+      res.json({'text': "Your update was completed successfully.", success:true})
     })
   },
   expired: (req, res)=>{

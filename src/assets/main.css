@@ -209,5 +209,7 @@ a.nav-text, a.nav-text:hover{
 }
 
 .notification-area{
-  margin: 12px 0 24px 0;
+  width: 500px;
+  height: auto;
+  margin: 24px auto;
 }

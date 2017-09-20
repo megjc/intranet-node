@@ -2,7 +2,8 @@
 const email = require('../../libs/email').email,
       ldap = require('../../libs/ldap'),
       error = require('../../libs/error').error,
-      User = require('../../models/user')
+      User = require('../../models/user'),
+      emitter = require('../../libs/event')
 
 let users = {
   /**
@@ -12,6 +13,7 @@ let users = {
    * @return {[type]}     [description]
    */
   authLDAP: (req, res)=>{
+    emitter.emitEvent('log', 'auth_request', req)
     if(req.body.name == '' || req.body.password == '')
         return res.status(400).json(error.EMPTY_VALUES)
 

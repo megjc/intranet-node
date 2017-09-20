@@ -8,10 +8,7 @@ let pool = mysql.createPool({
    password: process.env.DB_PASS,
    database: process.env.DB_NAME
 })
-/**
- * [description]
- * @return {[type]} [description]
- */
+
 exports.model = new function() {
   this.query = (options, cb)=>{
     pool.getConnection((err, connection)=>{

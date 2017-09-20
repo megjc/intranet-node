@@ -1,12 +1,14 @@
 <div class="container is-fluid">
 <div ng-include="'views/nav/nav-bar.html'"></div>
-
+<div class="notification-area">
+  <div ng-class="{'notification is-primary': vm.notification.success}"
+        ng-show="vm.notification.show">
+    {{vm.notification.text}}
+  </div>
+</div>
 <div class="level" style="margin-top:24px;">
   <div class="level-left"></div>
-  <div class="level-right">
-    <a href="#!/dashboard/apps/tod/officers/new"
-       class="button is-primary" ng-if="vm.canCreate">Add Officer</a>
-  </div>
+  <div class="level-right"></div>
 </div>
 <div class="columns">
   <div class="column is-2" ng-include="'views/apps/tod/side-menu.html'"></div>
@@ -40,7 +42,7 @@
               </p>
             </td>
             <td><a ng-href="#!/dashboard/apps/tod/officers/{{officer.employee_id}}/edit" style="color: #1F78D1" ng-if="vm.canUpdate">Edit</a></td>
-            <td><a href style="color: #1F78D1" ng-click="vm.notify( officer )" ng-if="vm.canUpdate">Notify</a></td>
+            <td><a href style="color: #1F78D1" ng-click="vm.notifyOfficer( officer )" ng-if="vm.canUpdate">Notify</a></td>
           </tr>
         </tbody>
       </table>
@@ -48,87 +50,6 @@
 
 </div> <!-- end of columns -->
 
-<div class="modal">
-  <div class="modal-background"></div>
-  <div class="modal-content">
-    <div class="box">
-<h1 class="title is-5">Edit Expiry Date</h1>
-<hr />
-
-<div class="field is-horizontal">
-  <div class="field-label is-normal">
-    <label class="label">Officer Name</label>
-  </div>
-  <div class="field-body">
-    <div class="field">
-      <div class="control">
-        <input class="input" disabled type="text" value="Tremaine Buchanan">
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="field is-horizontal">
-  <div class="field-label is-normal">
-    <label class="label">Title</label>
-  </div>
-  <div class="field-body">
-    <div class="field">
-      <div class="control">
-        <input class="input" disabled type="text" value="Driver's License">
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="field is-horizontal">
-  <div class="field-label is-normal">
-    <label class="label">Expiry Date</label>
-  </div>
-  <div class="field-body">
-    <div class="field">
-      <div class="control">
-        <input class="input" disabled type="text" value="Friday, September 13, 2013">
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="field is-horizontal">
-  <div class="field-label is-normal">
-    <label class="label">New Date</label>
-  </div>
-  <div class="field-body">
-    <div class="field">
-      <div class="control">
-        <input class="input" type="date" value="Driver's License">
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="field is-horizontal">
-  <div class="field-label">
-    <!-- Left empty for spacing -->
-  </div>
-  <div class="field-body">
-    <div class="field">
-      <div class="control">
-        <button class="button is-light">
-          Cancel
-        </button>
-
-        <button class="button is-primary">
-          Update
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-    </div>
-  </div>
-  <button class="modal-close is-large" aria-label="close"></button>
-</div>
 <div class="modal ng-class:{'is-active': vm.active}">
 <div class="modal-background"></div>
 <div class="modal-content">
