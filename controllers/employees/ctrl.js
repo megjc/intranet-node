@@ -30,7 +30,7 @@ let employees = {
    */
   show: (req, res)=>{
     let options = logic.buildIdQuery( req.params.id )
-    emitter.emitEvent('eventA')
+    //emitter.emitEvent('eventA')
     employee.show(options, (err, employee)=>{
       if(err) return res.json(err)
       document.index(req.params.id, (err, docs)=>{

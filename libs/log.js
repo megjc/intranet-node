@@ -17,7 +17,7 @@ exports.determineLogType = ( type )=>{
 exports.buildLog = ( type, data, ip, name)=>{
   let log = data
   if(type == 'auth_request'){
-    log.ip = ip
+    log.ip = ip.slice(7) //TODO check if ::ffff is in string before attempting slice
     log.user = name
   }
   return log

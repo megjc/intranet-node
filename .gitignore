@@ -4,3 +4,4 @@ src/vendor
 .env
 .editorconfig
 test/
+cron/config.js
