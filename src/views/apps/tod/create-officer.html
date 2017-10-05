@@ -4,7 +4,7 @@
   <div class="column is-2"></div>
   <div class="column is-8">
     <div class="notification-area">
-      <div ng-class="{'notification is-primary': vm.message.success}"
+      <div ng-class="{'notification is-primary': vm.message.success, 'notification is-danger': !vm.message.success}"
            ng-show="vm.notification.show">
         {{vm.notification.text}}
       </div>

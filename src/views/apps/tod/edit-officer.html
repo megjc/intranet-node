@@ -2,7 +2,7 @@
 <div ng-include="'views/nav/nav-bar.html'"></div>
 <div style="height:24px;margin-top:12px;margin-bottom:6px"></div>
 <div class="notification-area">
-  <div ng-class="{'notification is-primary': vm.message.success}"
+  <div ng-class="{'notification is-primary': vm.message.success, 'notification is-danger': !vm.message.success}"
        ng-show="vm.notification.show">
     {{vm.notification.text}}
   </div>
@@ -414,7 +414,7 @@
                        type="text"
                        ng-model="vm.vehicle.plate"
                        maxlength="6"
-                       placeholder="e.g. Honda">
+                       placeholder="e.g. 3399AD">
               </div>
             </div>
           </div>

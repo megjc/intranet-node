@@ -16,8 +16,8 @@ let vehicles = {
       'created_by': 2
     }
     vehicle.create(mVehicle, (err, result)=>{
-      if(err) return res.json({'text': 'Error in creating vehicle', success:false, 'err': err})
-      res.json({'text': 'Vehicle successfully created', success: true})
+      if(err) return res.json({'text': 'Whoops! An error occurred while creating a vehicle.', success:false, 'err': err})
+      res.json({'text': 'Success! Vehicle was successfully created.', success: true})
     })
   },
   update: (req, res)=>{
