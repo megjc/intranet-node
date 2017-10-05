@@ -1,0 +1,198 @@
+<div class="container">
+<div ng-include="'views/nav/nav-bar.html'"></div>
+<div class="columns">
+  <div class="column is-2"></div>
+  <div class="column is-8">
+    <div class="notification-area">
+      <div ng-class="{'notification is-primary': vm.message.success}"
+           ng-show="vm.notification.show">
+        {{vm.notification.text}}
+      </div>
+    </div>
+
+    <form novalidate name="officerForm" class="officer-form">
+      <div class="level" style="margin-top:24px;">
+        <div class="level-left">
+            <h1 class="subtitle is-4">
+              Edit Employee 
+            </h1>
+        </div>
+        <div class="level-right">
+          <div class="field is-grouped">
+            <!-- <p class="control">
+              <a class="button is-white" href="#!/dashboard/apps/tod/officers">
+                Back
+              </a>
+            </p> -->
+
+            <p class="control">
+              <a class="button is-light" href="#!/dashboard/apps/cea/contract-employees">
+                Cancel
+              </a>
+            </p>
+            <p class="control">
+              <a class="button is-primary"
+                 ng-click="vm.save(officerForm)">
+                Save
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="box">
+        <h1 class="subtitle is-5">Employee Details</h1>
+        <hr />
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Name</label>
+          </div>
+          <div class="field-body">
+            <div class="field is-grouped">
+              <p class="control is-expanded has-icons-left">
+                <input class="input form-ctrl"
+                       type="text"
+                       ng-model="vm.officer.name"
+                       placeholder="e.g. Juliet Wright-Brown"
+                       required>
+                <span class="icon is-small is-left">
+                  <i class="fa fa-user"></i>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Email</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control has-icons-left">
+                <input class="input form-ctrl"
+                       type="text"
+                       placeholder="e.g.juliet.wright-brown@megjc.gov.jm"
+                       ng-model="vm.officer.email"
+                       required>
+                <span class="icon is-small is-left">
+                    <i class="fa fa-envelope"></i>
+                  </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Classification</label>
+          </div>
+          <div class="field-body">
+            <div class="field is-narrow">
+              <div class="control">
+                <div class="select is-fullwidth">
+                  <select ng-model="vm.selectedClassification"
+                          ng-change="vm.getSelected()"
+                          ng-options="classification.id as classification.title for classification in vm.classifications"
+                          required>
+                    <option value="">Select Classification</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Position</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                <input class="input form-ctrl"
+                       type="text" ng-model="vm.officer.position"
+                       placeholder="e.g. Director"
+                       required>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Assigned To</label>
+          </div>
+          <div class="field-body">
+            <div class="field is-narrow">
+              <div class="control">
+                <div class="select is-fullwidth">
+                  <select ng-model="vm.selectedActivity"
+                          ng-change="vm.getSelectedActivity()"
+                          ng-options="activity.id as activity.title for activity in vm.activities"
+                          required>
+                    <option value="">Select Department</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Employment Type</label>
+          </div>
+          <div class="field-body">
+            <div class="field is-narrow">
+              <div class="control">
+                <div class="select is-fullwidth">
+                  <select ng-model="vm.selectedActivity"
+                          ng-change="vm.getSelectedActivity()"
+                          ng-options="activity.id as activity.title for activity in vm.activities"
+                          required>
+                    <option value="">Select Employment Type</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Start Date</label>
+          </div>
+          <div class="field-body">
+            <div class="field is-narrow">
+              <div class="control">
+                <input class="input"
+                       type="date"
+                       ng-model="vm.officer.license"
+                       ng-required="vm.vehicle_details_required">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">End Date</label>
+          </div>
+          <div class="field-body">
+            <div class="field is-narrow">
+              <div class="control">
+                <input class="input"
+                       type="date"
+                       ng-model="vm.officer.license"
+                       ng-required="vm.vehicle_details_required">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
+</div>

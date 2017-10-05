@@ -5,6 +5,21 @@ const vehicle = require('../../models/vehicle'),
       moment = require('moment')
 
 let vehicles = {
+  create: (req, res)=>{
+    let mVehicle = {
+      'emp_id': req.body.employee_id,
+      'make': req.body.make,
+      'model': req.body.model,
+      'year': req.body.year,
+      'plate': req.body.plate,
+      'is_owner': 'true',
+      'created_by': 2
+    }
+    vehicle.create(mVehicle, (err, result)=>{
+      if(err) return res.json({'text': 'Error in creating vehicle', success:false, 'err': err})
+      res.json({'text': 'Vehicle successfully created', success: true})
+    })
+  },
   update: (req, res)=>{
     let options = {
       sql: SQL.UPDATEVEHICLE,

@@ -15,6 +15,7 @@ let statements = {
           + ' employees.activity_id, employees.allowance_type, vehicles.id as `vehicle_id`, vehicles.make, vehicles.model, vehicles.year AS `vehicle_year`, vehicles.plate, vehicles.comments, vehicles.is_owner FROM ?? '
           + ' LEFT JOIN vehicles ON employees.id = vehicles.emp_id WHERE employees.id = ?',
     TRAVEL_OFFICERS: 'SELECT * FROM ?? WHERE ?? = ?',
+    CREATEVEHICLE: 'INSERT INTO vehicles SET ?',
     UPDATEVEHICLE: 'UPDATE vehicles SET plate = ?, make = ?, model = ?, year = ? WHERE id = ?',
     UPDATEDOC: 'UPDATE documents SET expiry_date = ? WHERE id = ? AND employee_id = ?',
     EXPIREDDOCS: "SELECT d.id, d.title, d.expiry_date, d.employee_id, e.classification_id, e.name, e.email, c.title AS `class_title`, a.title AS `act_title` FROM documents AS `d`"

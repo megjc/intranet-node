@@ -4,5 +4,6 @@ const express = require('express'),
 
 let router = express.Router()
 router.put('/vehicles/:id', api.vehicles.update)
+router.post('/vehicles', api.vehicles.create)
 
 module.exports = router
