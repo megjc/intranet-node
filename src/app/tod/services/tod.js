@@ -9,6 +9,7 @@
             getDocsByOfficerId:getDocsByOfficerId,
             initModal: initModal,
             createOfficer: createOfficer,
+            createVehicle: createVehicle,
             getAllowances:getAllowances,
             getClassifications: getClassifications,
             initOfficerForm: initOfficerForm,
@@ -50,6 +51,12 @@
 
         function createOfficer( officer ){
           return $http.post('/api/employees?traveling=true', officer).then(function(res){
+            return res.data
+          })
+        }
+
+        function createVehicle( vehicle ) {
+          return $http.post('/api/vehicles', vehicle).then(function(res){
             return res.data
           })
         }

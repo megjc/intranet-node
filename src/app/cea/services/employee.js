@@ -5,13 +5,19 @@
     /* @ngInject */
     function employeeSrv($http) {
       var service = {
-        list:list
+        list:list,
+        getEmployeeById: getEmployeeById
       }
 
       return service
 
       function list(){
         return $http.get('/api/employees?type=contract')
+                    .then(function(res){ return res.data })
+      }
+
+      function getEmployeeById( id ){
+        return $http.get('/api/employees/' + id)
                     .then(function(res){ return res.data })
       }
     }

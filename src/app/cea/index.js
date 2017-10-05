@@ -26,6 +26,11 @@
         title: 'New Employee',
         templateUrl: 'views/apps/cea/create-employee.html',
         access: { restricted: true}
+      }).when('/dashboard/apps/cea/contract-employees/:id/edit', {
+        controller: 'EditEmployee as vm',
+        title: 'Edit Employee',
+        templateUrl: 'views/apps/cea/edit-employee.html',
+        access: { restricted: true}
       })
     }
 })();

@@ -22,6 +22,7 @@
             <th>name</th>
             <th>post/division</th>
             <th>contract period</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -29,6 +30,7 @@
             <td style="text-transform: capitalize" title="{{employee.name}}">{{employee.name}}</td>
             <td style="text-transform: capitalize" title="{{employee.position}}">{{employee.position}} - {{employee.title}}</td>
             <td>{{employee.start_date | date: 'MMM d, yyyy'}} - {{employee.end_date | date: 'MMM d, yyyy'}}</td>
+            <td><a ng-href="#!/dashboard/apps/cea/contract-employees/{{employee.id}}/edit" style="color: #1F78D1">Edit</a></td>
           </tr>
         </tbody>
       </table>
