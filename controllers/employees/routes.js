@@ -16,4 +16,7 @@ router.get('/employees/:id/documents', token.validate, api.employees.documents)
 router.put('/employees/:id', token.validate, api.employees.update)
 router.get('/expired', token.validate, api.employees.expired)
 
+router.post('/contract-employees', token.validate, api.employees.createContract)
+router.put('/contract-employees/:id', token.validate, api.employees.updateContract)
+
 module.exports = router

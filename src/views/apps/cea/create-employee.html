@@ -19,12 +19,6 @@
         </div>
         <div class="level-right">
           <div class="field is-grouped">
-            <!-- <p class="control">
-              <a class="button is-white" href="#!/dashboard/apps/tod/officers">
-                Back
-              </a>
-            </p> -->
-
             <p class="control">
               <a class="button is-light" href="#!/dashboard/apps/cea/contract-employees">
                 Cancel
@@ -91,7 +85,7 @@
               <div class="control">
                 <div class="select is-fullwidth">
                   <select ng-model="vm.selectedClassification"
-                          ng-change="vm.getSelected()"
+                          ng-change="vm.getSelectedClassificiation()"
                           ng-options="classification.id as classification.title for classification in vm.classifications"
                           required>
                     <option value="">Select Classification</option>
@@ -139,25 +133,6 @@
           </div>
         </div>
 
-        <div class="field is-horizontal">
-          <div class="field-label is-normal">
-            <label class="label">Employment Type</label>
-          </div>
-          <div class="field-body">
-            <div class="field is-narrow">
-              <div class="control">
-                <div class="select is-fullwidth">
-                  <select ng-model="vm.selectedActivity"
-                          ng-change="vm.getSelectedActivity()"
-                          ng-options="activity.id as activity.title for activity in vm.activities"
-                          required>
-                    <option value="">Select Employment Type</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
         <div class="field is-horizontal">
           <div class="field-label is-normal">
@@ -168,8 +143,7 @@
               <div class="control">
                 <input class="input"
                        type="date"
-                       ng-model="vm.officer.license"
-                       ng-required="vm.vehicle_details_required">
+                       ng-model="vm.officer.start_date">
               </div>
             </div>
           </div>
@@ -184,8 +158,7 @@
               <div class="control">
                 <input class="input"
                        type="date"
-                       ng-model="vm.officer.license"
-                       ng-required="vm.vehicle_details_required">
+                       ng-model="vm.officer.end_date">
               </div>
             </div>
           </div>

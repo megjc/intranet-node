@@ -67,7 +67,6 @@
 
         function saveVehicle () {
           todSrv.createVehicle( vm.vehicle ).then(function(res){
-            console.log(res)
             vm.message = res
             vm.toggleCreate()
             activate()

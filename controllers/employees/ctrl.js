@@ -8,6 +8,7 @@ const SQL = require('../../libs/sql').statements
 const logic = require('../../middlewares/logic/employee').Employee
 const _ = require('underscore')
 const emitter = require('../../libs/event')
+
 let employees = {
   /**
    * Get a list of all employees
@@ -72,6 +73,20 @@ let employees = {
       }
     }
   },
+  createContract: (req, res)=>{
+    var contract_employee = req.body
+    contract_employee.start_date = moment(req.body.start_date).format("YYYY-MM-DD HH:mm:ss")
+    contract_employee.end_date = moment(req.body.end_date).format("YYYY-MM-DD HH:mm:ss")
+    contract_employee.affiliation = 'blank'
+    employee.create(contract_employee, (err, id)=>{
+      if(err) return res.status(400).json({
+        'text': 'Error in creating employee',
+        'success': false,
+        'error': err
+      })
+      res.json({'text': 'Employee successfully created', success: true})
+    })
+  },
   /**
    * Retrieve all documents for a travelling officer
    * @param  {[type]} req [description]
@@ -95,6 +110,24 @@ let employees = {
               req.body.allowance_type,
               req.body.is_traveling,
               req.body.id]
+    }
+    employee.update(options, (err, result)=>{
+      if(err) return res.status(400).json({'text': 'Error in updating record', 'err': err, 'success': false})
+      res.json({'text': "Your update was completed successfully.", success:true})
+    })
+  },
+  updateContract: (req, res)=>{
+    let options = {
+       sql: SQL.UPDATECONTRACT,
+       values: [req.body.name,
+                req.body.email,
+                req.body.position,
+                req.body.classification_id,
+                req.body.activity_id,
+                moment(req.body.start_date).format("YYYY-MM-DD HH:mm:ss"),
+                moment(req.body.end_date).format("YYYY-MM-DD HH:mm:ss"),
+                req.body.id
+              ]
     }
     employee.update(options, (err, result)=>{
       if(err) return res.status(400).json({'text': 'Error in updating record', 'err': err, 'success': false})

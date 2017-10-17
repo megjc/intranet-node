@@ -25,12 +25,28 @@
         controller: 'CreateEmployee as vm',
         title: 'New Employee',
         templateUrl: 'views/apps/cea/create-employee.html',
-        access: { restricted: true}
+        access: { restricted: true},
+        resolve: {
+          activities: function(common){
+            return common.getActivities()
+          },
+          classifications: function(common){
+            return common.getClassifications()
+          }
+        }
       }).when('/dashboard/apps/cea/contract-employees/:id/edit', {
         controller: 'EditEmployee as vm',
         title: 'Edit Employee',
         templateUrl: 'views/apps/cea/edit-employee.html',
-        access: { restricted: true}
+        access: { restricted: true},
+        resolve: {
+          activities: function(common){
+            return common.getActivities()
+          },
+          classifications: function(common){
+            return common.getClassifications()
+          }
+        }
       })
     }
 })();
