@@ -1,6 +1,4 @@
-<div class="container is-fluid">
 <div ng-include="'views/nav/nav-bar.html'"></div>
-
 <div class="level" style="margin-top:24px;">
   <div class="level-left"></div>
   <div class="level-right">
@@ -20,7 +18,7 @@
 
     <table class="table is-fullwidth" style="padding-bottom: 30px;">
         <thead style="font-weight:bold">
-          <tr style="text-transform:uppercase;font-size:14px;">
+          <tr style="text-transform:uppercase;">
             <th>name</th>
             <th>classification</th>
             <th>department/activity</th>
@@ -30,7 +28,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="officer in vm.officers | filter:search" style="font-size:15px">
+          <tr ng-repeat="officer in vm.officers | filter:search">
             <td style="text-transform: capitalize">{{officer.name}}</td>
             <td>{{officer.class_title}}</td>
             <td><strong>{{officer.act_title}}</strong></td>
@@ -59,6 +57,4 @@
         </tbody>
       </table>
   </div>
-
 </div> <!-- end of columns -->
-</div> <!-- end of container -->

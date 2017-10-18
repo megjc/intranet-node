@@ -1,24 +1,23 @@
-
-<div class="container">
 <div ng-include="'views/nav/nav-bar.html'"></div>
 
-  <div class="tabs is-medium" style="margin-top:40px">
+<div class="app-list-wrapper">
+  <div class="tabs is-medium app-list-tabs">
       <ul>
         <li class="is-active"><a>Apps</a></li>
       </ul>
   </div>
 
-<p class="subtitle is-5" ng-show="vm.apps.length == 0">
+  <p class="subtitle is-5" ng-show="vm.apps.length == 0">
   You have access to <strong>{{vm.apps.length}}</strong> apps.
-</p>
+  </p>
 
-  <ul style="list-style:none;padding-left:0">
-    <li class="capitalize" ng-repeat="app in vm.apps" style="height:60px">
-      <div class="app-circle">{{app.title | charAt}}</div>
+
+  <ul class="app-list">
+    <li class="capitalize" ng-repeat="app in vm.apps">
+      <div class="app-list-item-circle">{{app.title | charAt}}</div>
       <a ng-href="#!/dashboard/apps/{{app.link}}" ng-click="vm.setAppId(app.app_id)">
          <strong>{{app.title}}</strong></a>
-         <hr style="margin-top:12px;margin-bottom:12px"/>
+         <hr />
     </li>
   </ul>
-
 </div>

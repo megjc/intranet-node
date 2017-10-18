@@ -1,3 +1,88 @@
+/**
+ * Global Styles
+ */
+body{
+  font-size: 14px;
+  color: #363636;
+}
+
+#main-container{
+  margin-top: 12px;
+  margin-left: 4px;
+  margin-right: 12px;
+}
+/**
+ * Dashboard
+ */
+.app-list-wrapper{
+  margin: 24px auto;
+  height:auto;
+  width:600px;
+  background-color: #F5F5F5;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.app-list-tabs{
+  margin-top:12px;
+}
+
+.app-list{
+  list-style:none;
+  padding-left:0;
+}
+
+.app-list hr{
+  margin-top:12px;
+  margin-bottom:12px
+}
+
+.app-list > li{
+  height:60px;
+}
+
+.app-list a{
+  font-size: 18px;
+}
+
+.app-list a:hover{
+  text-decoration: none;
+  color: #276CDA;
+}
+
+.app-list-item{
+  height:60px;
+}
+
+/*.app-link{
+ color: #363636;
+ font-size: 18px;
+}
+
+.app-link:hover{
+ background-color: #276CDA;
+ color: #FFFFFF;
+ padding: 5px 12px;
+}*/
+
+.app-list-item-circle {
+ border-radius: 50%;
+ min-width: 40px;
+ min-height: 40px;
+ background-color: #276CDA;
+ width: 40px;
+ height: 40px;
+ float: left;
+ margin-right: 5px;
+ margin-top: -6px;
+ margin-bottom: 0px;
+ border: 1px solid #276CDA;
+ text-align: center;
+ display: inline-block;
+ padding: 6px 3px;
+ color: #FFFFFF;
+}
+
 a {
   color: #363636;
 }
@@ -81,26 +166,6 @@ a:hover{
     border-bottom: 2px solid #C4C4C4;
     text-decoration: none;
 }
-/**
- * App List
- */
-.app-circle {
- 	border-radius: 50%;
-  min-width: 40px;
-  min-height: 40px;
-  background-color: #EEEEEE;
-  width: 40px;
-  height: 40px;
-  float: left;
-  margin-right: 5px;
-  margin-top: -6px;
-  margin-bottom: 0px;
-  border: 1px solid #FFFFFF;
-  text-align: center;
-  display: inline-block;
-  padding: 6px 3px;
- 	/* width and height can be anything, as long as they're equal */
- }
 
 .capitalize{
   text-transform: capitalize;
@@ -129,16 +194,7 @@ a:hover{
   margin-bottom: 12px;
 }
 
-.app-link{
-  color: #363636;
-  font-size: 18px;
-}
 
-.app-link:hover{
-  background-color: #276CDA;
-  color: #FFFFFF;
-  padding: 5px 12px;
-}
 
 /**
  * NavBar
