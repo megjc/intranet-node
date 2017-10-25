@@ -1,0 +1,138 @@
+<div ng-include="'views/nav/nav-bar.html'"></div>
+<div class="columns">
+  <!-- <div class="column is-2"></div> -->
+  <div class="column">
+    <div class="notification-area">
+      <div ng-class="{'notification is-primary': vm.message.success, 'notification is-danger': !vm.message.success}"
+           ng-show="vm.notification.show">
+        {{vm.notification.text}}
+      </div>
+    </div>
+    <div class="tabs is-boxed is-centered" style="margin-top:36px" ng-include="'views/apps/pmas/tab.html'">
+
+    </div>
+
+    <div class="buttons is-pulled-right" style="margin-bottom:12px;">
+      <span class="button is-info" ng-click="vm.toggle()">Add Resource</span>
+    </div>
+
+
+    <table class="table is-fullwidth is-hoverable">
+      <thead>
+        <tr style="text-transform:uppercase; font-size:14px;">
+          <th>Key Output</th>
+          <th>Human</th>
+          <th>Physical</th>
+          <th>Training & Development</th>
+          <th>Cost</th>
+          <th>Date Actioned by Manager/Supervisor</th>
+          <th>Date Received by Employee</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<div class="modal ng-class:{'is-active': vm.active}">
+<div class="modal-background"></div>
+<div class="modal-content">
+  <div class="box">
+    <h1 class="subtitle is-5" style="color:#276CDA">Work Plan Item</h1>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">Unit Objective</label>
+      </div>
+      <div class="field-body">
+        <div class="field is-narrow">
+          <div class="control">
+            <div class="select is-fullwidth">
+              <select>
+                <option>Develop web information systems to enhance the operations so that the goals identified in the strategic plans are achieved</option>
+                <option>
+                  Identify any deviations and recommend corrective measures (including reallocation of resources and improving business processes) in response to the changing environment
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label class="label">Key Activities</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <textarea class="textarea" placeholder=""></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <label class="label">Outputs</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <textarea class="textarea" placeholder=""></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+<div class="field-label is-normal">
+  <label class="label">Performance Standards</label>
+</div>
+<div class="field-body">
+  <div class="field">
+    <div class="control">
+      <textarea class="textarea" placeholder=""></textarea>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="field is-horizontal">
+<div class="field-label is-normal">
+  <label class="label">Targets</label>
+</div>
+<div class="field-body">
+  <div class="field">
+    <div class="control">
+      <textarea class="textarea" placeholder=""></textarea>
+    </div>
+  </div>
+</div>
+</div>
+
+
+  <div class="field is-horizontal">
+    <div class="field-label"></div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <button class="button is-light" ng-click="vm.toggle()">
+            Cancel
+          </button>
+          <button class="button is-primary" ng-click="vm.save()">
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+<button class="modal-close is-large" aria-label="close" ng-click="vm.toggle()"></button>
+</div>

@@ -1,0 +1,169 @@
+<div ng-include="'views/nav/nav-bar.html'"></div>
+
+<div class="level" style="margin-top:24px;">
+  <div class="level-left"></div>
+  <div class="level-right">
+    <a href class="button is-info" ng-click="vm.toggle()">Create Work Plan</a>
+  </div>
+</div>
+
+<div class="notification-area">
+  <div ng-class="{'notification is-primary': vm.message.success, 'notification is-danger': !vm.message.success}"
+       ng-show="vm.notification.show">
+    {{vm.notification.text}}
+  </div>
+</div>
+
+<div class="columns">
+    <div class="column">
+      <div class="columns is-multiline">
+            <div ng-repeat="plan in vm.plans" class="column is-4">
+          <div class="card">
+          <div class="card-content">
+            <div class="content" style="font-size:16px">
+              <h1 class="title is-5" style="margin-bottom: 6px" >Work Plan {{plan.period_start}} - {{plan.period_end}}</h1>
+              <p style="margin-bottom:0px">{{plan.post}} ({{plan.classification}})</strong></p>
+              <p style="margin-bottom:0px">{{plan.division}}</p>
+              <p style="margin-bottom:0px" >Appraiser - {{plan.appraiser.name}}, {{plan.appraiser.post}}</p>
+              <p style="margin-bottom:0px">Length of Supervision (months) - 12</p>
+              <p style="margin-bottom:12px">Status - Incomplete</p>
+              <div class="field is-grouped is-grouped-right">
+              <p class="control">
+                <a class="button is-light" href="#!/dashboard/apps/pmas/plans/1/work-plan">View</a>
+              </p>
+            </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="modal ng-class:{'is-active': vm.active}">
+<div class="modal-background"></div>
+<div class="modal-content">
+  <div class="box">
+    <h1 class="subtitle is-5" style="color:#276CDA">Create Work Plan</h1>
+    <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label class="label">Name</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control is-expanded has-icons-left">
+          <input class="input" type="text" placeholder="Name" value="Tremaine Buchanan" disabled>
+          <span class="icon is-small is-left">
+            <i class="fa fa-user"></i>
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="field is-horizontal">
+  <div class="field-label is-normal">
+    <label class="label">Post</label>
+  </div>
+  <div class="field-body">
+    <div class="field">
+      <p class="control is-expanded has-icons-left">
+        <input class="input" type="text" placeholder="Name" value="Web Developer" disabled>
+        <span class="icon is-small is-left">
+          <i class="fa fa-user"></i>
+        </span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="field is-horizontal">
+<div class="field-label is-normal">
+  <label class="label">Classification</label>
+</div>
+<div class="field-body">
+  <div class="field">
+    <p class="control is-expanded has-icons-left">
+      <input class="input" type="text" placeholder="Name" value="MIT IT5" disabled>
+      <span class="icon is-small is-left">
+        <i class="fa fa-user"></i>
+      </span>
+    </p>
+  </div>
+</div>
+</div>
+
+<div class="field is-horizontal">
+<div class="field-label is-normal">
+  <label class="label">Division/Branch</label>
+</div>
+<div class="field-body">
+  <div class="field">
+    <p class="control is-expanded has-icons-left">
+      <input class="input" type="text" placeholder="Name" value="Information, Communication and Technology" disabled>
+      <span class="icon is-small is-left">
+        <i class="fa fa-user"></i>
+      </span>
+    </p>
+  </div>
+</div>
+</div>
+
+
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label class="label">Year</label>
+    </div>
+    <div class="field-body">
+      <div class="field is-narrow">
+        <div class="control">
+          <div class="select is-fullwidth">
+            <select>
+              <option>2017</option>
+              <option>Marketing</option>
+              <option>Sales</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label class="label">Appraiser</label>
+    </div>
+    <div class="field-body">
+      <div class="field is-narrow">
+        <div class="control">
+          <div class="select is-fullwidth">
+            <select>
+              <option>Nicholas Bailey</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="field is-horizontal">
+    <div class="field-label"></div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <button class="button is-light" ng-click="vm.toggle()">
+            Cancel
+          </button>
+          <button class="button is-primary" ng-click="vm.save()">
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+<button class="modal-close is-large" aria-label="close" ng-click="vm.toggle()"></button>
+</div>

@@ -19,11 +19,12 @@ angular.module('intranet', [
         'core.nav',
         'core.search',
         'core.dashboard',
+        'apps.pmas',
         'apps.tod'
-
     ]).config(config)
     .run(updateTitle)
-    .run(restrictAccess);
+    .run(restrictAccess)
+    .run(getActiveTab);
 
   function config($routeProvider, $httpProvider){
     $httpProvider.interceptors.push('interceptor')
@@ -51,5 +52,18 @@ angular.module('intranet', [
             })
         }
     });
+  }
+  /**
+   * Extracts tab identifier from a given URL
+   * @param  {[type]} $rootScope [description]
+   * @param  {[type]} $location  [description]
+   * @return {[type]}            [description]
+   */
+  function getActiveTab( $rootScope, $location ) {
+    var path = function() { return $location.path() }
+    $rootScope.$watch(path, function(newURL, oldURL){
+      var url = newURL.split('/')
+      if(url.length > 0 ) $rootScope.activetab = url[6]
+    })
   }
 })();
