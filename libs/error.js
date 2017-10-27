@@ -5,6 +5,13 @@
  */
 'use strict'
 const ERR = {
+  buildSysError: ( body, err ) =>{
+    return {
+      'sys_error': err,
+      'text': body.text,
+      'success': body.success
+    }
+  },
   BAD_REQUEST : {
         message: 'Your username/password is incorrect.',
         developer_msg: 'Username/password supplied by the user is invalid.',
@@ -43,6 +50,28 @@ const ERR = {
     UNAUTHORIZED: {
       message: 'Unathorized endpoint access',
       developer_msg: 'User not authorized to access endpoint',
+      success: false
+    }
+  },
+  RESOURCES:{
+    INDEX: {
+      text: 'An error occured while retrieving list.',
+      developer_msg: 'The list of resources retrieved from the database is empty',
+      success: false
+    },
+    CREATE: {
+      text: 'An error occured while creating resource.',
+      developer_msg: 'The resource being created encountered an error.',
+      success: false
+    },
+    SHOW: {
+      text: 'An error occured while retrieving a resource by id.',
+      developer_msg: 'The resource being retrieved by an associated id is not available.',
+      success: false
+    },
+    UPDATE: {
+      text: 'An error occured while updating a resource by id.',
+      developer_msg: 'The resource being updated by an associated id is not available.',
       success: false
     }
   }

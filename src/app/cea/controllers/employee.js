@@ -10,6 +10,7 @@
         vm.canRead = read
         vm.canUpdate = update
         vm.employees = employees
+        console.log(employees)
         function activate() { }
 
     }

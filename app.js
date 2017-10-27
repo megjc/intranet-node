@@ -28,6 +28,9 @@ const express = require("express"),
     vehicles = require('./controllers/vehicles/routes'),
     notifications = require('./controllers/notifications/routes'),
     logs = require('./controllers/logs/routes'),
+    objectives = require('./controllers/objectives/routes'),
+    appraisals = require('./controllers/appraisals/routes'),
+    knex = require('knex')(require('./knexfile')),
     /********* End of Endpoints ***************/
     bootloader = require('./libs/bootloader').Bootloader,
     srcDir = __dirname + "/src/",
@@ -55,6 +58,8 @@ app.use(api_version, documents)
 app.use(api_version, vehicles)
 app.use(api_version, notifications)
 app.use(api_version, logs)
+app.use(api_version, objectives)
+app.use(api_version, appraisals)
 app.use('/', admin)
 
 bootloader.init()

@@ -7,7 +7,7 @@ const express = require('express'),
 
 let router = express.Router()
 //Show all officers with expired documents
-router.get('/employees', token.validate, api.employees.index)
+router.get('/employees', api.employees.index)
 router.post('/employees', token.validate, api.employees.create)
 //Retrieve an officer by id
 router.get('/employees/:id', token.validate, api.employees.show)
