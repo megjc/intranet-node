@@ -6,3 +6,6 @@ src/vendor
 test/
 cron/config.js
 *.sql
+**/**/node_modules
+**/node_modules
+**/**/.env
